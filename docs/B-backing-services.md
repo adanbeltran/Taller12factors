@@ -6,7 +6,7 @@
 
 Identificar y registrar los datos de conexión de los servicios externos que la aplicación consumirá como **backing services**.
 
-En este taller no se crea el proyecto Firebase ni el proyecto de MongoDB Atlas. Se asume que ambos ya existen y que el equipo cuenta con acceso a ellos.
+En este taller no se crea el proyecto Firebase ni el proyecto de MongoDB Atlas. Se asume que ambos ya existen y que el estudiante cuenta con acceso a ellos.
 
 ## 1. Datos de conexión de MongoDB Atlas
 
