@@ -215,10 +215,12 @@ La misma versión puede pasar por varios ambientes. Por ejemplo:
 - `v1.0` en `prod`
 
 Si mientras `v1.0` está en pruebas el equipo sigue desarrollando, esos cambios nuevos no deberían afectar lo que se está validando. Para eso, el ambiente de **test** debe trabajar sobre una **versión identificada y congelada**, mientras el desarrollo continúa sobre la misma codebase hacia una versión futura.
+
 La idea corta es:
-v1.0 se prueba
-lo nuevo va a v1.1 o v2.0
-los fixes de v1.0 salen como v1.0.1
+- v1.0 se prueba
+- lo nuevo va a v1.1 o v2.0
+- los fixes de v1.0 salen como v1.0.1
+
 En consecuencia:
 
 - existe una sola codebase,
