@@ -197,7 +197,38 @@ build/
 **Factor I. Codebase**  
 Un solo repositorio versionado con frontend, backend y documentación.
 
----
+### Nota sobre versiones y ambientes
+
+La entrega actual corresponde a la **versión 1.0** de la aplicación.
+
+En futuras iteraciones podrán aparecer nuevas versiones, por ejemplo `v2.0` o `v2.1`, sin crear otro proyecto ni duplicar el repositorio. El proyecto sigue siendo el mismo (`ecored-circular`) y las nuevas versiones se gestionan dentro de la misma **codebase**.
+
+Es importante diferenciar:
+
+- **versión**: estado liberado del código, por ejemplo `v1.0` o `v2.0`
+- **ambiente**: contexto donde esa versión se ejecuta, por ejemplo `dev`, `test` o `prod`
+
+La misma versión puede pasar por varios ambientes. Por ejemplo:
+
+- `v1.0` en `dev`
+- `v1.0` en `test`
+- `v1.0` en `prod`
+
+Si mientras `v1.0` está en pruebas el equipo sigue desarrollando, esos cambios nuevos no deberían afectar lo que se está validando. Para eso, el ambiente de **test** debe trabajar sobre una **versión identificada y congelada**, mientras el desarrollo continúa sobre la misma codebase hacia una versión futura.
+La idea corta es:
+v1.0 se prueba
+lo nuevo va a v1.1 o v2.0
+los fixes de v1.0 salen como v1.0.1
+En consecuencia:
+
+- existe una sola codebase,
+- pueden existir varias versiones liberadas en el tiempo,
+- una misma versión puede recorrer distintos ambientes,
+- los ambientes no son proyectos distintos,
+- la diferencia entre ambientes está principalmente en la configuración y los recursos externos asociados.
+
+```
+
 
 ## Paso 2. Crear documento inicial de release
 
