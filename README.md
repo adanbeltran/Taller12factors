@@ -229,9 +229,6 @@ En consecuencia:
 - los ambientes no son proyectos distintos,
 - la diferencia entre ambientes está principalmente en la configuración y los recursos externos asociados.
 
-```
-
-
 ## Paso 2. Crear documento inicial de release
 
 Crear `docs/release-notes.md`:
