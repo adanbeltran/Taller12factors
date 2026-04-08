@@ -1,106 +1,139 @@
-# Taller 1 — Aplicación cloud-native mínima con React, Django, Firebase y Oracle OCI, evidenciando los 12 factores
+# Taller 1 — Aplicación cloud-native mínima para EcoRed Circular con React, Django, Firebase y MongoDB Atlas, evidenciando los 12 factores
 
 ## 1. Propósito
 
-Construir una aplicación mínima, pero completa en arquitectura, para evidenciar los **12 factores** de una aplicación cloud-native.
+Construir una aplicación mínima, pero completa en arquitectura, para evidenciar la aplicación rigurosa de los **12 factores** de una aplicación cloud-native.
 
-La metodología **Twelve-Factor App** propone, entre otros principios:
+Este taller se enfoca en diseñar, configurar y ejecutar una solución mínima con:
 
-- un solo código base,
-- dependencias explícitas,
-- configuración en variables de entorno,
-- servicios externos conectables,
-- separación entre build, release y run,
-- procesos sin estado,
-- publicación por puertos,
-- escalado por procesos,
-- reinicio robusto,
-- paridad entre ambientes,
-- logs por `stdout`,
-- procesos administrativos one-off.
+- **Frontend:** React
+- **Backend:** Django + Django REST Framework
+- **Autenticación:** Firebase Authentication
+- **Persistencia:** MongoDB Atlas
 
-Referencia oficial:
-
-- https://12factor.net/es/
+El énfasis del taller **no está en evaluar amplitud funcional**, sino en demostrar que la solución fue construida siguiendo correctamente los principios de **Twelve-Factor App**.
 
 ---
 
-## 2. Caso de estudio
+## 2. Enfoque de evaluación del taller
 
-Se usará una versión mínima de **EcoRed Circular**.
+Este taller **no evalúa la cantidad de funcionalidades implementadas**, sino la **correcta y rigurosa aplicación de los 12 factores** en una arquitectura mínima funcional.
 
-En este taller, el flujo será:
+Por tanto, el propósito no es construir una plataforma completa, sino una base pequeña, coherente y técnicamente bien justificada en términos de:
 
-1. iniciar sesión con Firebase,
-2. registrar una empresa,
-3. publicar un material reciclable,
-4. consultar sus publicaciones.
+- codebase
+- dependencias
+- configuración
+- backing services
+- build, release y run
+- procesos
+- port binding
+- concurrencia
+- disposability
+- paridad entre ambientes
+- logs
+- procesos administrativos
 
-### Alcance intencionalmente reducido
-
-No se implementan en esta versión:
-
-- sedes,
-- Mapbox,
-- i18n completo,
-- múltiples roles,
-- logística,
-- marketplace expandido.
-
-Esto permite concentrar el tiempo en arquitectura cloud-native + evidencia rigurosa de los 12 factores.
+Durante la sesión, los estudiantes deben **seguir los pasos del taller**, ejecutar la aplicación mínima propuesta y al final **desarrollar o sustentar en sala** lo realizado, explicando cómo su solución evidencia cada uno de los factores.
 
 ---
 
-## 3. Resultado esperado
+## 3. Caso de estudio
+
+### 3.1 Nombre del caso
+**EcoRed Circular**
+
+### 3.2 Descripción ampliada
+
+**EcoRed Circular** es un caso de estudio orientado a la economía circular en Colombia. Su propósito es servir como base para una plataforma digital que articule actores vinculados al aprovechamiento, circulación y valorización de materiales reciclables o reutilizables.
+
+El caso parte de una situación realista:
+
+- muchas empresas generan residuos o subproductos con valor potencial,
+- no siempre existe un mecanismo digital simple para registrar y publicar esos materiales,
+- los actores que podrían reutilizarlos o transformarlos no siempre tienen visibilidad sobre la oferta disponible,
+- la trazabilidad de materiales y la articulación entre oferta y demanda suele ser limitada.
+
+Desde la perspectiva arquitectónica, este caso es adecuado para construir una aplicación cloud-native pequeña pero realista, apoyada en servicios externos administrados y diseñada desde el inicio con criterios de configuración externalizada, desacoplamiento y despliegue reproducible.
+
+---
+
+## 4. Módulos del caso de estudio
+
+La solución completa de **EcoRed Circular** podría crecer hacia varios módulos funcionales.
+
+### 4.1 Módulos posibles del sistema
+
+- autenticación y acceso
+- empresas
+- publicaciones de materiales
+- ciudadano
+- reciclador
+- transformador
+- solicitudes o intención de compra
+- sedes y georreferenciación
+- administración
+- impacto
+
+### 4.2 Módulo que se desarrolla en este Taller 1
+
+En este taller se desarrollará únicamente el **módulo de empresas** del caso de estudio.
+
+Este módulo se implementa como una base mínima funcional que permite:
+
+- autenticarse en la aplicación,
+- registrar información básica de una empresa,
+- asociar publicaciones de materiales a la empresa registrada,
+- consultar la información registrada.
+
+Aunque el flujo incluye autenticación y publicaciones de materiales, el enfoque del taller se organiza alrededor del **módulo de empresas** como núcleo funcional inicial de la arquitectura.
+
+### 4.3 Proyección para iteraciones posteriores
+
+Sobre esta base, en futuras iteraciones podrían desarrollarse otros módulos del caso, como:
+
+- publicaciones avanzadas de materiales,
+- solicitudes o intención de compra,
+- perfiles de recicladores,
+- perfiles de transformadores,
+- sedes y georreferenciación,
+- administración,
+- indicadores de impacto.
+
+---
+
+## 5. Resultado esperado
 
 Al finalizar, cada equipo debe dejar funcionando:
 
 - un repositorio único con `backend/`, `frontend/` y `docs/`,
-- una **Oracle Autonomous Database** creada en OCI,
-- un usuario de base de datos para la aplicación,
-- backend Django REST conectado a Oracle,
-- frontend React con login usando Firebase,
-- formulario para empresa,
-- formulario para publicación,
-- listado de publicaciones,
-- evidencia documentada de los 12 factores.
+- backend Django REST conectado a MongoDB Atlas,
+- frontend React autenticando con Firebase,
+- registro de empresas,
+- registro de publicaciones asociadas a empresa,
+- consulta de información registrada,
+- documentación explícita de evidencias Twelve-Factor.
+
+El cierre del taller consiste en que los estudiantes **desarrollen o sustenten en sala** lo realizado, explicando cómo la solución construida evidencia de forma rigurosa los 12 factores.
 
 ---
 
-## 4. Qué se implementa y qué no
+## 6. Prerrequisitos
 
-### Sí se implementa
+Se asume que cada equipo **ya tiene disponibles** los backing services requeridos:
 
-- React
-- Django REST Framework
-- Firebase Authentication
-- Oracle Autonomous Database
-- variables de entorno
-- endpoint de salud
-- módulo `Company`
-- módulo `MaterialListing`
-- documentación de evidencia Twelve-Factor
+- proyecto Firebase ya provisionado,
+- autenticación ya habilitada en Firebase,
+- proyecto y clúster de MongoDB Atlas ya provisionados,
+- credenciales o datos de conexión ya disponibles,
+- permisos de acceso previamente configurados.
 
-### No se implementa en esta versión
-
-- Mapbox operativo
-- i18n completo
-- sedes
-- múltiples perfiles de actor
-- panel administrativo
-- marketplace ampliado
-
----
-
-## 5. Prerrequisitos
-
-Cada equipo debe tener:
+Además, cada equipo debe contar con:
 
 - Python 3.11 o superior
 - Node.js LTS
+- npm
 - Git
-- cuenta en Firebase
-- acceso a OCI con permisos para crear Autonomous Database
 - editor como VS Code
 
 ### Verificación rápida
@@ -114,22 +147,22 @@ git --version
 
 ---
 
-## 6. Evidencia esperada por factor
+## 7. Evidencia esperada por factor
 
 | Factor | Evidencia esperada |
 |---|---|
 | I. Codebase | Un solo repositorio con frontend y backend |
 | II. Dependencies | `requirements.txt` y `package.json` |
 | III. Config | `.env.example` y variables de entorno |
-| IV. Backing services | Oracle y Firebase conectados por configuración |
+| IV. Backing services | MongoDB Atlas y Firebase conectados por configuración |
 | V. Build, release, run | documento de release y ejecución separada |
-| VI. Processes | backend sin estado local persistente |
-| VII. Port binding | backend en 8000 y frontend en 3000 |
+| VI. Processes | proceso web y proceso administrativo diferenciados |
+| VII. Port binding | backend por puerto y frontend por puerto |
 | VIII. Concurrency | documento de escalado por procesos |
 | IX. Disposability | reinicio limpio del backend |
 | X. Dev/prod parity | tabla de ambientes |
-| XI. Logs | logs visibles en consola |
-| XII. Admin processes | `migrate` y `seed_demo` |
+| XI. Logs | logs visibles en consola/stdout |
+| XII. Admin processes | comando `seed_demo` |
 
 ---
 
@@ -150,6 +183,7 @@ git checkout -b develop
 ```gitignore
 backend/venv/
 backend/.env
+backend/firebase-service-account.json
 frontend/.env
 __pycache__/
 *.pyc
@@ -161,7 +195,7 @@ build/
 ### Evidencia Twelve-Factor
 
 **Factor I. Codebase**  
-Un solo repositorio versionado.
+Un solo repositorio versionado con frontend, backend y documentación.
 
 ---
 
@@ -177,107 +211,112 @@ Crear `docs/release-notes.md`:
 - Frontend React
 
 ## Release
-- Variables Oracle
+- Variables MongoDB Atlas
 - Variables Firebase
 
 ## Run
 - Backend en puerto 8000
-- Frontend en puerto 3000
+- Frontend en puerto 5173
 ```
 
 ### Evidencia Twelve-Factor
 
 **Factor V. Build, release, run**  
-Este archivo se completará al final.
+La estructura del release se documenta desde el inicio.
 
 ---
 
-# Parte B. Crear la base de datos en Oracle OCI
+# Parte B. Identificación de datos de conexión de los backing services
 
-## Paso 3. Aprovisionar Oracle Autonomous Database
+## Paso 3. Identificar datos de conexión de MongoDB Atlas
 
-En OCI:
+En este taller no se crea el proyecto, el clúster ni el usuario de base de datos.  
+Se asume que esos recursos ya existen.
 
-1. Ir a **Oracle Database → Autonomous Database**.
-2. Elegir compartimento y región.
-3. Clic en **Create Autonomous Database**.
-4. Completar:
-   - **Display name**: `ecored-circular-db`
-   - **Database name**: `ECOREDDB`
-   - **Workload type**: `Transaction Processing`
-   - tamaño mínimo permitido
-   - contraseña de `ADMIN`
-5. Crear la instancia.
-6. Esperar a que el estado cambie a **Available**.
+Lo que debe estar disponible es:
+
+- `MONGODB_URI`
+- `MONGODB_DB_NAME`
+
+### Ejemplo
+
+```env
+MONGODB_URI=mongodb+srv://usuario:clave@cluster.xxxxx.mongodb.net/?retryWrites=true&w=majority
+MONGODB_DB_NAME=ecored_circular_db
+```
+
+### Verificación mínima
+
+Antes de continuar, confirmar que:
+
+- la URI fue entregada correctamente,
+- el usuario tiene permisos,
+- el acceso de red ya fue habilitado,
+- el nombre de base de datos está definido.
 
 ### Evidencia Twelve-Factor
 
+**Factor III. Config**  
+La conexión se entrega por variables de entorno.
+
 **Factor IV. Backing services**  
-La base de datos es un servicio externo, no parte del código.
-
-### Evidencia sugerida
-
-Guardar en `docs/` una captura o nota con:
-
-- nombre de la instancia,
-- región,
-- compartimento,
-- estado `Available`.
+MongoDB Atlas se usa como servicio externo.
 
 ---
 
-## Paso 4. Obtener datos de conexión
+## Paso 4. Identificar datos de conexión de Firebase
 
-Entrar a la instancia → **Database connection**.
+En este taller no se crea el proyecto Firebase ni se configura Authentication desde cero.  
+Se asume que esos recursos ya existen.
 
-Registrar estos datos:
+Lo que debe estar disponible para el frontend es:
 
-- `ORACLE_DB_HOST`
-- `ORACLE_DB_PORT`
-- `ORACLE_DB_SERVICE`
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_APP_ID`
 
-### Nota
+Y para el backend:
 
-Si el curso usa conexión **TLS sin wallet**, usar el connection string correspondiente según la configuración de la instancia.
+- archivo `firebase-service-account.json`
+- o ruta definida en `FIREBASE_CREDENTIALS_PATH`
 
----
+### Ejemplo de variables frontend
 
-## Paso 5. Crear usuario de aplicación
-
-Conectarse como `ADMIN` y ejecutar:
-
-```sql
-CREATE USER ecored_app IDENTIFIED BY "ClaveSegura_2026";
-GRANT CREATE SESSION TO ecored_app;
-GRANT CREATE TABLE TO ecored_app;
-GRANT CREATE SEQUENCE TO ecored_app;
-GRANT CREATE VIEW TO ecored_app;
-GRANT CREATE TRIGGER TO ecored_app;
-GRANT UNLIMITED TABLESPACE TO ecored_app;
+```env
+VITE_FIREBASE_API_KEY=xxxxx
+VITE_FIREBASE_AUTH_DOMAIN=xxxxx.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=xxxxx
+VITE_FIREBASE_APP_ID=xxxxx
 ```
 
-### Recomendación
+### Ejemplo de variable backend
 
-No usar `ADMIN` como usuario de la aplicación.  
-La aplicación debe conectarse con `ecored_app`.
+```env
+FIREBASE_CREDENTIALS_PATH=./firebase-service-account.json
+```
 
----
+### Verificación mínima
 
-## Paso 6. Probar conectividad
+Antes de continuar, confirmar que:
 
-Antes de tocar Django, confirmar:
+- el frontend tiene los datos del proyecto,
+- el backend tiene acceso a la credencial de servicio,
+- la autenticación ya fue habilitada previamente.
 
-- instancia en `Available`,
-- usuario `ecored_app` creado,
-- host, puerto y service name correctos.
+### Evidencia Twelve-Factor
 
-Guardar evidencia en `docs/`.
+**Factor III. Config**  
+La configuración de Firebase vive fuera del código.
+
+**Factor IV. Backing services**  
+Firebase Authentication se integra como servicio externo.
 
 ---
 
 # Parte C. Construcción del backend
 
-## Paso 7. Crear entorno virtual e instalar dependencias
+## Paso 5. Crear entorno virtual e instalar dependencias
 
 ```bash
 cd backend
@@ -286,48 +325,42 @@ python -m venv venv
 
 ### Activar entorno
 
-#### Windows
-
-```bash
-venv\Scripts\activate
-```
-
 #### Linux/macOS
 
 ```bash
 source venv/bin/activate
 ```
 
+#### Windows
+
+```bash
+venv\Scripts\activate
+```
+
 ### Instalar dependencias
 
 ```bash
-pip install django djangorestframework django-cors-headers python-dotenv firebase-admin oracledb gunicorn
+pip install django djangorestframework django-cors-headers python-dotenv firebase-admin pymongo gunicorn
 pip freeze > requirements.txt
 ```
 
 ### Evidencia Twelve-Factor
 
 **Factor II. Dependencies**  
-Dependencias explícitas y aisladas.
+Dependencias explícitas, declaradas y aisladas.
 
 ---
 
-## Paso 8. Crear proyecto Django
+## Paso 6. Crear proyecto Django
 
 ```bash
 django-admin startproject config .
 python manage.py startapp core
 ```
 
-Verificar que existen:
-
-- `manage.py`
-- `config/settings.py`
-- `core/models.py`
-
 ---
 
-## Paso 9. Crear `.env.example` y `.env`
+## Paso 7. Crear `.env.example` y `.env`
 
 Crear `backend/.env.example`:
 
@@ -338,20 +371,15 @@ DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
 APP_ENV=dev
 PORT=8000
 
-ORACLE_DB_USER=ecored_app
-ORACLE_DB_PASSWORD=
-ORACLE_DB_HOST=
-ORACLE_DB_PORT=1522
-ORACLE_DB_SERVICE=
+MONGODB_URI=
+MONGODB_DB_NAME=ecored_circular_db
 
-CORS_ALLOWED_ORIGINS=http://localhost:3000
+CORS_ALLOWED_ORIGINS=http://localhost:5173
 
-FIREBASE_PROJECT_ID=
-FIREBASE_CLIENT_EMAIL=
-FIREBASE_PRIVATE_KEY=
+FIREBASE_CREDENTIALS_PATH=./firebase-service-account.json
 ```
 
-Copiarlo a `backend/.env` y completar valores reales.
+Copiarlo a `backend/.env` y completar con los valores reales.
 
 ### Evidencia Twelve-Factor
 
@@ -360,9 +388,7 @@ Toda la configuración sensible y cambiante está fuera del código.
 
 ---
 
-## Paso 10. Configurar `settings.py`
-
-Reemplazar lo esencial de `backend/config/settings.py` por:
+## Paso 8. Configurar `settings.py`
 
 ```python
 from pathlib import Path
@@ -402,33 +428,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
-        },
-    },
-]
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.oracle",
-        "NAME": os.getenv("ORACLE_DB_SERVICE"),
-        "USER": os.getenv("ORACLE_DB_USER"),
-        "PASSWORD": os.getenv("ORACLE_DB_PASSWORD"),
-        "HOST": os.getenv("ORACLE_DB_HOST"),
-        "PORT": os.getenv("ORACLE_DB_PORT", "1522"),
-    }
-}
-
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:5173").split(",")
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -459,121 +459,123 @@ LOGGING = {
 }
 ```
 
-### Verificar configuración
-
-```bash
-python manage.py check
-```
-
 ### Evidencia Twelve-Factor
 
 - **Factor III. Config**
-- **Factor IV. Backing services**
 - **Factor XI. Logs**
 
 ---
 
-# Parte D. Crear tablas del taller
+## Paso 9. Crear módulo de conexión a MongoDB
 
-## Paso 11. Definir modelos
-
-Editar `backend/core/models.py`:
+Crear `backend/core/mongo.py`:
 
 ```python
-from django.db import models
+import os
+from pymongo import MongoClient
+from dotenv import load_dotenv
+from pathlib import Path
 
-class Company(models.Model):
-    owner_uid = models.CharField(max_length=128)
-    name = models.CharField(max_length=150)
-    nit = models.CharField(max_length=50, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
-    def __str__(self):
-        return self.name
+MONGODB_URI = os.getenv("MONGODB_URI")
+MONGODB_DB_NAME = os.getenv("MONGODB_DB_NAME", "ecored_circular_db")
 
+client = MongoClient(MONGODB_URI)
+db = client[MONGODB_DB_NAME]
 
-class MaterialListing(models.Model):
-    STATUS_CHOICES = [
-        ("available", "Available"),
-        ("reserved", "Reserved"),
-        ("closed", "Closed"),
-    ]
-
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="listings")
-    title = models.CharField(max_length=150)
-    category = models.CharField(max_length=100)
-    quantity = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="available")
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
-```
-
-## Paso 12. Crear tablas con migraciones
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### Tablas de negocio creadas
-
-- `core_company`
-- `core_materiallisting`
-
-### Tablas internas de Django
-
-Entre otras:
-
-- `django_migrations`
-- `django_content_type`
-- `auth_permission`
-- `auth_group`
-- `auth_group_permissions`
-- `auth_user`
-- `auth_user_groups`
-- `auth_user_user_permissions`
-- `django_admin_log`
-- `django_session`
-
-### Relación entre tablas de negocio
-
-```text
-core_company (1) ---- (N) core_materiallisting
+companies_collection = db["companies"]
+material_listings_collection = db["material_listings"]
 ```
 
 ### Evidencia Twelve-Factor
 
-**Factor XII. Admin processes**  
-`makemigrations` y `migrate` son procesos administrativos puntuales.
+**Factor IV. Backing services**  
+MongoDB Atlas se consume como servicio externo configurable.
 
 ---
 
-## Paso 13. Crear seed de ejemplo
+## Paso 10. Definir la estructura lógica de los documentos
+
+### Colección `companies`
+
+```json
+{
+  "_id": "ObjectId",
+  "owner_uid": "firebase-user-id",
+  "name": "EcoRed SAS",
+  "nit": "900000001",
+  "city": "Bogotá",
+  "sector": "Manufactura",
+  "created_at": "2026-04-08T12:00:00Z"
+}
+```
+
+### Colección `material_listings`
+
+```json
+{
+  "_id": "ObjectId",
+  "company_id": "ObjectId",
+  "material_type": "Cartón reciclable industrial",
+  "quantity": 120.5,
+  "unit": "kg",
+  "location": "Bogotá",
+  "status": "available",
+  "published_by": "firebase-user-id",
+  "created_at": "2026-04-08T12:30:00Z"
+}
+```
+
+### Relación conceptual
+
+```text
+companies (1) ---- (N) material_listings
+```
+
+---
+
+## Paso 11. Crear proceso administrativo `seed_demo`
 
 ```bash
 mkdir -p core/management/commands
 ```
 
-Crear `core/management/commands/seed_demo.py`:
+Crear `backend/core/management/commands/seed_demo.py`:
 
 ```python
 from django.core.management.base import BaseCommand
-from core.models import Company
+from datetime import datetime, timezone
+from core.mongo import companies_collection, material_listings_collection
 
 class Command(BaseCommand):
-    help = "Crea datos demo"
+    help = "Crea datos demo en MongoDB"
 
     def handle(self, *args, **kwargs):
-        Company.objects.get_or_create(
-            nit="900000001",
-            defaults={
+        existing = companies_collection.find_one({"nit": "900000001"})
+        if not existing:
+            result = companies_collection.insert_one({
                 "owner_uid": "demo-owner",
-                "name": "EcoRed Demo"
-            }
-        )
-        self.stdout.write(self.style.SUCCESS("Datos demo creados"))
+                "name": "EcoRed Demo",
+                "nit": "900000001",
+                "city": "Bogotá",
+                "sector": "Manufactura",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+
+            material_listings_collection.insert_one({
+                "company_id": result.inserted_id,
+                "material_type": "Cartón",
+                "quantity": 80,
+                "unit": "kg",
+                "location": "Bogotá",
+                "status": "available",
+                "published_by": "demo-owner",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+
+        self.stdout.write(self.style.SUCCESS("Datos demo creados en MongoDB"))
 ```
 
 Ejecutar:
@@ -585,37 +587,17 @@ python manage.py seed_demo
 ### Evidencia Twelve-Factor
 
 **Factor XII. Admin processes**  
-El seed se ejecuta como proceso one-off.
+`seed_demo` se ejecuta como proceso administrativo aislado.
 
 ---
 
-# Parte E. API REST y autenticación
+## Paso 12. Configurar Firebase en backend
 
-## Paso 14. Crear serializers
+Guardar en `backend/` el archivo:
 
-Crear `backend/core/serializers.py`:
-
-```python
-from rest_framework import serializers
-from .models import Company, MaterialListing
-
-class CompanySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Company
-        fields = "__all__"
-        read_only_fields = ["owner_uid", "created_at"]
-
-
-class MaterialListingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MaterialListing
-        fields = "__all__"
-        read_only_fields = ["created_at"]
+```text
+firebase-service-account.json
 ```
-
----
-
-## Paso 15. Configurar Firebase en backend
 
 Crear `backend/core/firebase_auth.py`:
 
@@ -625,16 +607,16 @@ import firebase_admin
 from firebase_admin import credentials, auth
 from rest_framework.authentication import BaseAuthentication
 from rest_framework import exceptions
+from dotenv import load_dotenv
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
+
+cred_path = os.getenv("FIREBASE_CREDENTIALS_PATH")
 
 if not firebase_admin._apps:
-    cred_dict = {
-        "type": "service_account",
-        "project_id": os.getenv("FIREBASE_PROJECT_ID"),
-        "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
-        "private_key": os.getenv("FIREBASE_PRIVATE_KEY", "").replace("\n", "\n"),
-        "token_uri": "https://oauth2.googleapis.com/token",
-    }
-    cred = credentials.Certificate(cred_dict)
+    cred = credentials.Certificate(cred_path)
     firebase_admin.initialize_app(cred)
 
 class FirebaseAuthentication(BaseAuthentication):
@@ -663,43 +645,80 @@ class FirebaseAuthentication(BaseAuthentication):
 - **Factor IV. Backing services**
 - **Factor VI. Processes**
 
-> Nota: si al copiar necesitas convertir saltos de línea reales en la llave privada, usa:
-> `os.getenv("FIREBASE_PRIVATE_KEY", "").replace("\\n", "\n")`
-
 ---
 
-## Paso 16. Crear vistas
+## Paso 13. Crear vistas y endpoints
 
-Editar `backend/core/views.py`:
+Crear `backend/core/views.py`:
 
 ```python
-from rest_framework import viewsets, permissions
+from datetime import datetime, timezone
+from bson import ObjectId
+from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from core.mongo import companies_collection, material_listings_collection
 
-from .models import Company, MaterialListing
-from .serializers import CompanySerializer, MaterialListingSerializer
-
-class CompanyViewSet(viewsets.ModelViewSet):
-    serializer_class = CompanySerializer
+class CompanyViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        uid = self.request.firebase_user.get("uid")
-        return Company.objects.filter(owner_uid=uid)
+    def list(self, request):
+        uid = request.firebase_user.get("uid")
+        companies = list(
+            companies_collection.find(
+                {"owner_uid": uid},
+                {"owner_uid": 1, "name": 1, "nit": 1, "city": 1, "sector": 1, "created_at": 1}
+            )
+        )
+        for company in companies:
+            company["id"] = str(company["_id"])
+            del company["_id"]
+        return Response(companies)
 
-    def perform_create(self, serializer):
-        uid = self.request.firebase_user.get("uid")
-        serializer.save(owner_uid=uid)
+    def create(self, request):
+        uid = request.firebase_user.get("uid")
+        data = request.data
+        document = {
+            "owner_uid": uid,
+            "name": data.get("name"),
+            "nit": data.get("nit"),
+            "city": data.get("city"),
+            "sector": data.get("sector"),
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        result = companies_collection.insert_one(document)
+        return Response({"id": str(result.inserted_id)}, status=status.HTTP_201_CREATED)
 
 
-class MaterialListingViewSet(viewsets.ModelViewSet):
-    serializer_class = MaterialListingSerializer
+class MaterialListingViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        uid = self.request.firebase_user.get("uid")
-        return MaterialListing.objects.filter(company__owner_uid=uid)
+    def list(self, request):
+        uid = request.firebase_user.get("uid")
+        companies = list(companies_collection.find({"owner_uid": uid}, {"_id": 1}))
+        company_ids = [company["_id"] for company in companies]
+
+        items = list(material_listings_collection.find({"company_id": {"$in": company_ids}}))
+        for item in items:
+            item["id"] = str(item["_id"])
+            item["company_id"] = str(item["company_id"])
+            del item["_id"]
+        return Response(items)
+
+    def create(self, request):
+        data = request.data
+        document = {
+            "company_id": ObjectId(data.get("company_id")),
+            "material_type": data.get("material_type"),
+            "quantity": float(data.get("quantity")),
+            "unit": data.get("unit", "kg"),
+            "location": data.get("location"),
+            "status": data.get("status", "available"),
+            "published_by": request.firebase_user.get("uid"),
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        result = material_listings_collection.insert_one(document)
+        return Response({"id": str(result.inserted_id)}, status=status.HTTP_201_CREATED)
 
 
 @api_view(["GET"])
@@ -707,15 +726,6 @@ class MaterialListingViewSet(viewsets.ModelViewSet):
 def health(request):
     return Response({"status": "ok"})
 ```
-
-### Evidencia Twelve-Factor
-
-**Factor VI. Processes**  
-El backend no guarda estado de negocio local; persistencia en Oracle e identidad en Firebase.
-
----
-
-## Paso 17. Crear rutas
 
 Crear `backend/core/urls.py`:
 
@@ -748,7 +758,7 @@ urlpatterns = [
 
 ---
 
-## Paso 18. Probar backend
+## Paso 14. Probar backend
 
 ```bash
 python manage.py runserver 8000
@@ -769,19 +779,18 @@ Debe responder:
 ### Evidencia Twelve-Factor
 
 **Factor VII. Port binding**  
-La aplicación expone su servicio por puerto.
+El backend expone su servicio por puerto.
 
 ---
 
-# Parte F. Construcción del frontend
+# Parte D. Construcción del frontend
 
-## Paso 19. Crear proyecto React
-
-En otra terminal:
+## Paso 15. Crear proyecto React
 
 ```bash
 cd ../frontend
-npx create-react-app .
+npm create vite@latest . -- --template react
+npm install
 npm install axios react-router-dom firebase
 ```
 
@@ -791,19 +800,19 @@ npm install axios react-router-dom firebase
 
 ---
 
-## Paso 20. Crear `.env.example`
+## Paso 16. Crear `.env.example`
 
 Crear `frontend/.env.example`:
 
 ```env
-REACT_APP_API_URL=http://localhost:8000/api
-REACT_APP_FIREBASE_API_KEY=
-REACT_APP_FIREBASE_AUTH_DOMAIN=
-REACT_APP_FIREBASE_PROJECT_ID=
-REACT_APP_FIREBASE_APP_ID=
+VITE_API_URL=http://localhost:8000/api
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_APP_ID=
 ```
 
-Copiarlo a `frontend/.env` y completar.
+Copiarlo a `frontend/.env` y completar con los datos del proyecto ya existente.
 
 ### Evidencia Twelve-Factor
 
@@ -811,31 +820,27 @@ Copiarlo a `frontend/.env` y completar.
 
 ---
 
-## Paso 21. Configurar Firebase
+## Paso 17. Configurar Firebase en frontend
 
 Crear `frontend/src/firebaseConfig.js`:
 
 ```javascript
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export { signInWithPopup };
 ```
-
-### En Firebase
-
-- crear proyecto,
-- habilitar Authentication,
-- activar Email/Password,
-- crear usuario de prueba.
 
 ### Evidencia Twelve-Factor
 
@@ -843,7 +848,7 @@ export const auth = getAuth(app);
 
 ---
 
-## Paso 22. Crear cliente HTTP
+## Paso 18. Crear cliente HTTP
 
 Crear `frontend/src/api.js`:
 
@@ -851,7 +856,7 @@ Crear `frontend/src/api.js`:
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use((config) => {
@@ -867,56 +872,47 @@ export default api;
 
 ---
 
-## Paso 23. Crear páginas
+## Paso 19. Crear páginas
 
-### `frontend/src/LoginPage.js`
+### `frontend/src/LoginPage.jsx`
 
 ```javascript
-import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { auth, provider, signInWithPopup } from "./firebaseConfig";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const cred = await signInWithEmailAndPassword(auth, email, password);
-      const token = await cred.user.getIdToken();
-      localStorage.setItem("firebaseToken", token);
-      navigate("/company");
-    } catch {
-      setMsg("Error de autenticación");
-    }
+  const handleLogin = async () => {
+    const result = await signInWithPopup(auth, provider);
+    const token = await result.user.getIdToken();
+    localStorage.setItem("firebaseToken", token);
+    navigate("/company");
   };
 
   return (
     <div>
       <h2>Login</h2>
-      {msg && <p>{msg}</p>}
-      <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Ingresar</button>
-      </form>
+      <button onClick={handleLogin}>Ingresar con Google</button>
     </div>
   );
 }
 ```
 
-### `frontend/src/CompanyPage.js`
+### `frontend/src/CompanyPage.jsx`
 
 ```javascript
 import React, { useState } from "react";
 import api from "./api";
 
 export default function CompanyPage() {
-  const [form, setForm] = useState({ name: "", nit: "" });
+  const [form, setForm] = useState({
+    name: "",
+    nit: "",
+    city: "",
+    sector: "",
+  });
   const [msg, setMsg] = useState("");
 
   const handleChange = (e) => {
@@ -940,6 +936,8 @@ export default function CompanyPage() {
       <form onSubmit={handleSubmit}>
         <input name="name" placeholder="Nombre" onChange={handleChange} />
         <input name="nit" placeholder="NIT" onChange={handleChange} />
+        <input name="city" placeholder="Ciudad" onChange={handleChange} />
+        <input name="sector" placeholder="Sector" onChange={handleChange} />
         <button type="submit">Guardar</button>
       </form>
     </div>
@@ -947,7 +945,7 @@ export default function CompanyPage() {
 }
 ```
 
-### `frontend/src/MaterialsPage.js`
+### `frontend/src/MaterialsPage.jsx`
 
 ```javascript
 import React, { useState, useEffect } from "react";
@@ -957,10 +955,11 @@ export default function MaterialsPage() {
   const [companies, setCompanies] = useState([]);
   const [items, setItems] = useState([]);
   const [form, setForm] = useState({
-    company: "",
-    title: "",
-    category: "",
+    company_id: "",
+    material_type: "",
     quantity: "",
+    unit: "kg",
+    location: "",
     status: "available",
   });
 
@@ -994,21 +993,17 @@ export default function MaterialsPage() {
       <h2>Materiales</h2>
 
       <form onSubmit={handleSubmit}>
-        <select name="company" onChange={handleChange}>
+        <select name="company_id" onChange={handleChange}>
           <option value="">Seleccione empresa</option>
           {companies.map((c) => (
             <option key={c.id} value={c.id}>{c.name}</option>
           ))}
         </select>
 
-        <input name="title" placeholder="Título" onChange={handleChange} />
-        <input name="category" placeholder="Categoría" onChange={handleChange} />
+        <input name="material_type" placeholder="Tipo de material" onChange={handleChange} />
         <input name="quantity" placeholder="Cantidad" onChange={handleChange} />
-        <select name="status" onChange={handleChange}>
-          <option value="available">Disponible</option>
-          <option value="reserved">Reservado</option>
-          <option value="closed">Cerrado</option>
-        </select>
+        <input name="unit" placeholder="Unidad" onChange={handleChange} />
+        <input name="location" placeholder="Ubicación" onChange={handleChange} />
 
         <button type="submit">Crear publicación</button>
       </form>
@@ -1017,7 +1012,7 @@ export default function MaterialsPage() {
 
       {items.map((item) => (
         <div key={item.id}>
-          <strong>{item.title}</strong> - {item.category} - {item.quantity}
+          <strong>{item.material_type}</strong> - {item.quantity} {item.unit} - {item.location}
         </div>
       ))}
     </div>
@@ -1027,9 +1022,9 @@ export default function MaterialsPage() {
 
 ---
 
-## Paso 24. Configurar rutas
+## Paso 20. Configurar rutas
 
-Editar `frontend/src/App.js`:
+Editar `frontend/src/App.jsx`:
 
 ```javascript
 import React from "react";
@@ -1061,40 +1056,35 @@ export default App;
 
 ---
 
-## Paso 25. Ejecutar frontend
+## Paso 21. Ejecutar frontend
 
 ```bash
-npm start
+npm run dev
 ```
 
-Frontend en `http://localhost:3000`.
+Frontend en `http://localhost:5173`.
 
 ### Evidencia Twelve-Factor
 
-**Factor VII. Port binding**
+**Factor VII. Port binding**  
+El frontend expone su interfaz por puerto.
 
 ---
 
-# Parte G. Logs, procesos y reinicio
+# Parte E. Logs, procesos y reinicio
 
-## Paso 26. Validar logs
+## Paso 22. Validar logs
 
-Con backend corriendo, hacer peticiones desde el frontend y observar la terminal del backend.
+Con backend corriendo, realizar peticiones desde el frontend y observar la terminal del backend.
 
 ### Qué se evidencia
 
 **Factor XI. Logs**  
-Los logs salen por consola, como flujo de eventos, no a archivos locales.
-
-### Evidencia sugerida
-
-Guardar una captura de la terminal del backend.
+Los logs salen por consola/stdout y se tratan como flujo de eventos.
 
 ---
 
-## Paso 27. Validar procesos
-
-Diferenciar claramente:
+## Paso 23. Validar procesos
 
 ### Proceso web
 
@@ -1102,10 +1092,9 @@ Diferenciar claramente:
 python manage.py runserver 8000
 ```
 
-### Procesos administrativos
+### Proceso administrativo
 
 ```bash
-python manage.py migrate
 python manage.py seed_demo
 ```
 
@@ -1114,53 +1103,58 @@ Crear `docs/processes.md`:
 ```md
 # Processes
 
-La aplicación se ejecuta como procesos sin estado.
-El proceso web atiende peticiones HTTP.
-Los procesos administrativos se ejecutan por separado:
-- migrate
+## Proceso web
+El proceso web atiende solicitudes HTTP y expone la API.
+
+## Proceso administrativo
+El proceso administrativo se ejecuta de forma separada al proceso web.
+Ejemplo:
 - seed_demo
 
-La persistencia está en Oracle y la identidad en Firebase.
+## Conclusión
+La persistencia está en MongoDB Atlas y la identidad en Firebase.
 ```
 
-### Qué se evidencia
+### Evidencia Twelve-Factor
 
 **Factor VI. Processes**  
-El backend es stateless; persistencia en Oracle e identidad en Firebase.
+Se diferencia explícitamente entre proceso web y proceso administrativo.
 
 ---
 
-## Paso 28. Validar reinicio
+## Paso 24. Validar reinicio del backend
 
-1. Detener backend con `Ctrl + C`.
-2. Reiniciar:
-
-```bash
-python manage.py runserver 8000
-```
-
-3. Verificar que la app vuelve a responder sin reparación manual.
+1. detener backend con `Ctrl + C`,
+2. reiniciar backend,
+3. verificar que la aplicación sigue respondiendo,
+4. confirmar que los datos persisten en MongoDB Atlas.
 
 Crear `docs/disposability.md`:
 
 ```md
 # Disposability
 
-La aplicación reinicia rápidamente.
-No guarda estado persistente en memoria local.
-La persistencia está en Oracle y la identidad en Firebase.
+## Prueba realizada
+1. iniciar backend
+2. registrar empresa
+3. registrar publicación
+4. detener backend
+5. reiniciar backend
+6. consultar nuevamente
+
+## Resultado
+La aplicación reinicia rápidamente y los datos se conservan porque la persistencia está en MongoDB Atlas.
 ```
 
-### Qué se evidencia
+### Evidencia Twelve-Factor
 
-**Factor IX. Disposability**  
-Inicio rápido y apagado seguro.
+**Factor IX. Disposability**
 
 ---
 
-# Parte H. Evidencia final de los 12 factores
+# Parte F. Evidencia final de los 12 factores
 
-## Paso 29. Build, release y run
+## Paso 25. Build, release y run
 
 En `frontend/`:
 
@@ -1178,23 +1172,22 @@ Completar `docs/release-notes.md`:
 - Backend preparado con `pip install -r requirements.txt`
 
 ## Release
-- Variables Oracle cargadas desde `.env`
+- Variables MongoDB Atlas cargadas desde `.env`
 - Variables Firebase cargadas desde `.env`
 - APP_ENV=dev
 
 ## Run
 - `python manage.py runserver 8000`
-- `npm start`
+- `npm run dev`
 ```
 
-### Qué se evidencia
+### Evidencia Twelve-Factor
 
-**Factor V. Build, release, run**  
-Separación entre construcción, release y ejecución.
+**Factor V. Build, release, run**
 
 ---
 
-## Paso 30. Concurrency
+## Paso 26. Concurrency
 
 Crear `docs/concurrency.md`:
 
@@ -1202,46 +1195,44 @@ Crear `docs/concurrency.md`:
 # Concurrency
 
 El backend puede escalarse como múltiples procesos web del mismo tipo.
+
 Ejemplo conceptual:
 - web-1
 - web-2
 - web-3
 
 Los procesos administrativos se ejecutan por separado:
-- migrate
 - seed_demo
 ```
 
-### Qué se evidencia
+### Evidencia Twelve-Factor
 
-**Factor VIII. Concurrency**  
-El escalado se plantea por procesos.
+**Factor VIII. Concurrency**
 
 ---
 
-## Paso 31. Paridad entre ambientes
+## Paso 27. Paridad entre ambientes
 
 Crear `docs/environments.md`:
 
 ```md
-# Ambientes
+# Environments
 
 | Ambiente | Código | Base de datos | Auth | Config |
 |---|---|---|---|---|
-| dev | mismo repo | Oracle | Firebase | .env.dev |
-| test | mismo repo | Oracle | Firebase | .env.test |
-| staging | mismo repo | Oracle | Firebase | variables del despliegue |
-| prod | mismo repo | Oracle | Firebase | variables del despliegue |
+| dev | mismo repo | MongoDB Atlas dev | Firebase dev | .env.dev |
+| test | mismo repo | MongoDB Atlas test | Firebase test | .env.test |
+| staging | mismo repo | MongoDB Atlas staging | Firebase staging | variables del despliegue |
+| prod | mismo repo | MongoDB Atlas prod | Firebase prod | variables del despliegue |
 ```
 
-### Qué se evidencia
+### Evidencia Twelve-Factor
 
-**Factor X. Dev/prod parity**  
-Mismo código y mismo tipo de servicios; cambia la configuración.
+**Factor X. Dev/prod parity**
 
 ---
 
-## Paso 32. Checklist final
+## Paso 28. Checklist final
 
 Crear `docs/checklist-12factor.md`:
 
@@ -1253,98 +1244,68 @@ Crear `docs/checklist-12factor.md`:
 | I. Codebase | Un solo repositorio con backend y frontend |
 | II. Dependencies | requirements.txt y package.json |
 | III. Config | .env.example en backend y frontend |
-| IV. Backing services | Oracle y Firebase configurados externamente |
+| IV. Backing services | MongoDB Atlas y Firebase configurados externamente |
 | V. Build, release, run | release-notes.md y build del frontend |
-| VI. Processes | processes.md; backend sin estado local persistente |
-| VII. Port binding | backend 8000, frontend 3000 |
+| VI. Processes | processes.md; proceso web y administrativo diferenciados |
+| VII. Port binding | backend 8000, frontend 5173 |
 | VIII. Concurrency | concurrency.md |
 | IX. Disposability | disposability.md |
 | X. Dev/prod parity | environments.md |
 | XI. Logs | logging a consola/stdout |
-| XII. Admin processes | migrate y seed_demo |
+| XII. Admin processes | seed_demo |
 ```
 
 ---
 
-# Parte I. Flujo completo de prueba
+# Parte G. Flujo de verificación
 
-## Paso 33. Ejecutar flujo funcional
+## Paso 29. Ejecutar flujo mínimo
 
 Con backend y frontend corriendo:
 
 1. entrar a `/login`,
-2. iniciar sesión con usuario de Firebase,
-3. ir a `/company` y crear una empresa,
-4. ir a `/materials` y crear una publicación,
-5. verificar que la publicación aparece en el listado,
-6. confirmar en Oracle que existen registros en:
-   - `core_company`
-   - `core_materiallisting`
+2. iniciar sesión con Firebase,
+3. ir a `/company` y registrar una empresa,
+4. ir a `/materials` y registrar una publicación asociada,
+5. verificar que la información aparece en el listado,
+6. confirmar que existen documentos en:
+   - `companies`
+   - `material_listings`
 
 ---
 
-# Parte J. Resumen técnico de base de datos
+# Parte H. Sustentación en sala
 
-## Tablas de negocio creadas por el taller
+Al final del taller, los estudiantes deben **desarrollar o sustentar en sala** lo realizado.
 
-- `core_company`
-- `core_materiallisting`
+La sustentación debe mostrar, con base en el repositorio y en la ejecución del sistema, cómo se evidencia cada uno de los 12 factores en la solución construida.
 
-## Relación
-
-```text
-core_company (1) ---- (N) core_materiallisting
-```
-
-## Propósito
-
-- `core_company`: almacena empresas registradas por usuarios autenticados.
-- `core_materiallisting`: almacena publicaciones de materiales reciclables asociadas a una empresa.
-
-## Tablas internas de soporte de Django
-
-Entre otras:
-
-- `django_migrations`
-- `django_content_type`
-- `auth_permission`
-- `auth_group`
-- `auth_group_permissions`
-- `auth_user`
-- `auth_user_groups`
-- `auth_user_user_permissions`
-- `django_admin_log`
-- `django_session`
+El foco de la sustentación no debe ponerse en la cantidad de pantallas ni en la complejidad funcional, sino en la **rigurosidad arquitectónica** de la implementación.
 
 ---
 
-# Parte K. Entregables
+# Parte I. Entregables
 
-Cada equipo debe entregar:
+Cada equipo debe dejar disponible:
 
-- repositorio `ecored-circular`
-- Oracle Autonomous Database creada
-- usuario `ecored_app`
-- tablas `core_company` y `core_materiallisting` creadas y con datos
-- backend funcionando
-- frontend funcionando
-- `docs/release-notes.md`
-- `docs/processes.md`
-- `docs/disposability.md`
-- `docs/concurrency.md`
-- `docs/environments.md`
-- `docs/checklist-12factor.md`
+- repositorio `ecored-circular`,
+- backend funcionando,
+- frontend funcionando,
+- integración con MongoDB Atlas,
+- integración con Firebase,
+- colecciones `companies` y `material_listings` con datos,
+- `docs/release-notes.md`,
+- `docs/processes.md`,
+- `docs/disposability.md`,
+- `docs/concurrency.md`,
+- `docs/environments.md`,
+- `docs/checklist-12factor.md`.
 
 ---
 
-# Parte L. Qué queda como ampliación
+# Parte J. Cierre del taller
 
-Sobre esta base pueden extender después:
+Al terminar este Taller 1, el equipo habrá construido una base cloud-native mínima alrededor del **módulo de empresas** del caso de estudio EcoRed Circular.
 
-- sedes
-- Mapbox
-- internacionalización
-- perfiles ciudadano/reciclador/transformador
-- solicitudes de compra
-- despliegue completo en OCI con VM y contenedores
+La meta del taller no es evaluar cuántas funcionalidades tiene la aplicación, sino verificar que una solución mínima fue construida con una aplicación correcta, rigurosa y argumentable de los **12 factores**.
 
