@@ -2,17 +2,157 @@
 
 [← B. Configuración de backing services](B-backing-services.md) | [Volver al README](../README.md) | [Siguiente: D. Creación de frontend →](D-frontend.md)
 
-## 1. Crear la estructura base del proyecto
+## Propósito de esta sección
 
-```bash
+En esta sección se construirá el backend del proyecto usando **Visual Studio Code** como entorno principal de trabajo.
+
+La lógica de trabajo será la siguiente:
+
+1. crear desde la **terminal integrada de VS Code** toda la estructura base de carpetas y subcarpetas,
+2. crear y editar los archivos desde el **explorador de VS Code**,
+3. ejecutar y validar el backend desde la misma terminal integrada.
+
+En coherencia con el alcance del taller, la app principal del backend será **`companies`**, ya que el foco funcional está en el **módulo de empresas** del caso de estudio.
+
+---
+
+## 1. Abrir VS Code y usar la terminal integrada
+
+1. Abrir **Visual Studio Code**.
+2. Abrir una carpeta de trabajo vacía o la ubicación donde se creará el proyecto.
+3. Abrir la terminal integrada desde:
+   - menú **Terminal > New Terminal**
+
+A partir de este punto, todos los comandos del backend se ejecutarán desde esa terminal integrada.
+
+---
+
+## 2. Crear toda la estructura inicial del proyecto desde la terminal de VS Code
+
+Ejecutar en la terminal integrada de VS Code:
+
+```powershell
 mkdir ecored-circular
 cd ecored-circular
-mkdir backend frontend docs
+mkdir backend, frontend, docs
 git init
 git checkout -b develop
+cd backend
+mkdir companies
+mkdir companies\management
+mkdir companies\management\commands
 ```
 
-### Crear `.gitignore` en la raíz
+Con esto queda creada la estructura base de carpetas y subcarpetas que se utilizará en el taller.
+
+### Estructura esperada en este punto
+
+```text
+ecored-circular/
+├── backend/
+│   └── companies/
+│       └── management/
+│           └── commands/
+├── frontend/
+├── docs/
+```
+
+### Evidencia Twelve-Factor transversal
+
+- **Factor I. Codebase**: un solo repositorio y una sola estructura base del proyecto.
+- **Factor XII. Admin processes**: desde el inicio queda prevista la carpeta para comandos administrativos.
+
+---
+
+## 3. Abrir la carpeta del proyecto en VS Code
+
+Si aún no está abierta como carpeta principal, abrir en VS Code la carpeta:
+
+```text
+ecored-circular
+```
+
+A partir de este momento, los archivos se crearán y editarán desde el panel **Explorer** de VS Code.
+
+---
+
+## 4. Crear entorno virtual desde la terminal integrada de VS Code
+
+Ubicados en `backend/`, ejecutar:
+
+```powershell
+python -m venv venv
+```
+
+### Activar entorno virtual
+
+```powershell
+venv\Scripts\activate
+```
+
+---
+
+## 5. Instalar dependencias desde la terminal integrada de VS Code
+
+Con el entorno virtual activado, ejecutar:
+
+```powershell
+pip install django djangorestframework django-cors-headers python-dotenv firebase-admin pymongo gunicorn
+pip freeze > requirements.txt
+```
+
+### Evidencia Twelve-Factor transversal
+
+- **Factor II. Dependencies**: dependencias declaradas explícitamente en `requirements.txt`.
+
+---
+
+## 6. Crear proyecto Django y la app `companies` desde la terminal integrada de VS Code
+
+Todavía ubicados en `backend/`, ejecutar:
+
+```powershell
+django-admin startproject config .
+python manage.py startapp companies
+```
+
+> Nota: si Django recrea la carpeta `companies`, verificar que dentro de ella exista la ruta `management\commands\`. Si no aparece, crearla nuevamente desde VS Code o desde la terminal.
+
+---
+
+## 7. Crear los archivos desde el explorador de VS Code
+
+A partir de este punto, los archivos deben crearse desde el panel lateral de **VS Code**, usando **New File** sobre la carpeta correspondiente.
+
+### Archivos que deben crearse o completarse
+
+#### En la raíz del proyecto
+- `.gitignore`
+
+#### En `backend/`
+- `.env.example`
+- `.env`
+- `requirements.txt` si no quedó generado
+- `firebase-service-account.json`
+
+#### En `backend\config\`
+- `settings.py`
+- `urls.py`
+
+#### En `backend\companies\`
+- `mongo.py`
+- `firebase_auth.py`
+- `views.py`
+- `urls.py`
+
+#### En `backend\companies\management\commands\`
+- `seed_demo.py`
+
+---
+
+## 8. Crear `.gitignore` desde VS Code
+
+Crear el archivo `.gitignore` en la raíz del proyecto con este contenido:
 
 ```gitignore
 backend/venv/
@@ -26,40 +166,43 @@ dist/
 build/
 ```
 
-## 2. Crear entorno virtual e instalar dependencias
+### Evidencia Twelve-Factor transversal
 
-```bash
-cd backend
-python -m venv venv
+- **Factor III. Config**: la configuración sensible no entra al repositorio.
+
+---
+
+## 9. Crear `backend/.env.example` y `backend/.env` desde VS Code
+
+### Archivo `backend/.env.example`
+
+```env
+DJANGO_SECRET_KEY=
+DJANGO_DEBUG=True
+DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
+APP_ENV=dev
+PORT=8000
+
+MONGODB_URI=
+MONGODB_DB_NAME=ecored_circular_db
+
+CORS_ALLOWED_ORIGINS=http://localhost:5173
+
+FIREBASE_CREDENTIALS_PATH=./firebase-service-account.json
 ```
 
-### Linux/macOS
+Luego crear `backend/.env` copiando la misma estructura y completando los valores reales.
 
-```bash
-source venv/bin/activate
-```
+### Evidencia Twelve-Factor transversal
 
-### Windows
+- **Factor III. Config**: configuración separada del código.
+- **Factor IV. Backing services**: conexión a MongoDB Atlas y Firebase mediante variables de entorno.
 
-```bash
-venv\Scripts\activate
-```
+---
 
-### Instalar dependencias
+## 10. Editar `backend/config/settings.py` desde VS Code
 
-```bash
-pip install django djangorestframework django-cors-headers python-dotenv firebase-admin pymongo gunicorn
-pip freeze > requirements.txt
-```
-
-## 3. Crear proyecto Django
-
-```bash
-django-admin startproject config .
-python manage.py startapp core
-```
-
-## 4. Configurar `settings.py`
+Abrir `backend/config/settings.py` y reemplazar su contenido esencial por:
 
 ```python
 from pathlib import Path
@@ -82,7 +225,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
-    "core",
+    "companies",
 ]
 
 MIDDLEWARE = [
@@ -103,7 +246,7 @@ CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:5173"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "core.firebase_auth.FirebaseAuthentication",
+        "companies.firebase_auth.FirebaseAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
@@ -125,9 +268,9 @@ LOGGING = {
 }
 ```
 
-## 5. Crear módulo de conexión a MongoDB
+---
 
-Archivo `backend/core/mongo.py`:
+## 11. Crear `backend/companies/mongo.py` desde VS Code
 
 ```python
 import os
@@ -148,89 +291,11 @@ companies_collection = db["companies"]
 material_listings_collection = db["material_listings"]
 ```
 
-## 6. Definir estructura lógica de los documentos
+---
 
-### Colección `companies`
+## 12. Crear `backend/companies/firebase_auth.py` desde VS Code
 
-```json
-{
-  "_id": "ObjectId",
-  "owner_uid": "firebase-user-id",
-  "name": "EcoRed SAS",
-  "nit": "900000001",
-  "city": "Bogotá",
-  "sector": "Manufactura",
-  "created_at": "2026-04-08T12:00:00Z"
-}
-```
-
-### Colección `material_listings`
-
-```json
-{
-  "_id": "ObjectId",
-  "company_id": "ObjectId",
-  "material_type": "Cartón reciclable industrial",
-  "quantity": 120.5,
-  "unit": "kg",
-  "location": "Bogotá",
-  "status": "available",
-  "published_by": "firebase-user-id",
-  "created_at": "2026-04-08T12:30:00Z"
-}
-```
-
-## 7. Crear proceso administrativo `seed_demo`
-
-```bash
-mkdir -p core/management/commands
-```
-
-Archivo `backend/core/management/commands/seed_demo.py`:
-
-```python
-from django.core.management.base import BaseCommand
-from datetime import datetime, timezone
-from core.mongo import companies_collection, material_listings_collection
-
-class Command(BaseCommand):
-    help = "Crea datos demo en MongoDB"
-
-    def handle(self, *args, **kwargs):
-        existing = companies_collection.find_one({"nit": "900000001"})
-        if not existing:
-            result = companies_collection.insert_one({
-                "owner_uid": "demo-owner",
-                "name": "EcoRed Demo",
-                "nit": "900000001",
-                "city": "Bogotá",
-                "sector": "Manufactura",
-                "created_at": datetime.now(timezone.utc).isoformat()
-            })
-
-            material_listings_collection.insert_one({
-                "company_id": result.inserted_id,
-                "material_type": "Cartón",
-                "quantity": 80,
-                "unit": "kg",
-                "location": "Bogotá",
-                "status": "available",
-                "published_by": "demo-owner",
-                "created_at": datetime.now(timezone.utc).isoformat()
-            })
-
-        self.stdout.write(self.style.SUCCESS("Datos demo creados en MongoDB"))
-```
-
-## 8. Configurar Firebase en backend
-
-Guardar en `backend/` el archivo:
-
-```text
-firebase-service-account.json
-```
-
-Archivo `backend/core/firebase_auth.py`:
+Guardar en `backend/` el archivo `firebase-service-account.json` y luego crear `backend/companies/firebase_auth.py`:
 
 ```python
 import os
@@ -270,9 +335,9 @@ class FirebaseAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed("Token inválido")
 ```
 
-## 9. Crear vistas y endpoints
+---
 
-Archivo `backend/core/views.py`:
+## 13. Crear `backend/companies/views.py` desde VS Code
 
 ```python
 from datetime import datetime, timezone
@@ -280,7 +345,7 @@ from bson import ObjectId
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from core.mongo import companies_collection, material_listings_collection
+from companies.mongo import companies_collection, material_listings_collection
 
 class CompanyViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -347,7 +412,11 @@ def health(request):
     return Response({"status": "ok"})
 ```
 
-Archivo `backend/core/urls.py`:
+---
+
+## 14. Crear `backend/companies/urls.py` y ajustar `backend/config/urls.py` desde VS Code
+
+### `backend/companies/urls.py`
 
 ```python
 from rest_framework.routers import DefaultRouter
@@ -364,7 +433,7 @@ urlpatterns = [
 ]
 ```
 
-Editar `backend/config/urls.py`:
+### `backend/config/urls.py`
 
 ```python
 from django.contrib import admin
@@ -372,16 +441,92 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include("core.urls")),
+    path("api/", include("companies.urls")),
 ]
 ```
+
+---
+
+## 15. Crear `backend/companies/management/commands/seed_demo.py` desde VS Code
+
+```python
+from django.core.management.base import BaseCommand
+from datetime import datetime, timezone
+from companies.mongo import companies_collection, material_listings_collection
+
+class Command(BaseCommand):
+    help = "Crea datos demo en MongoDB"
+
+    def handle(self, *args, **kwargs):
+        existing = companies_collection.find_one({"nit": "900000001"})
+        if not existing:
+            result = companies_collection.insert_one({
+                "owner_uid": "demo-owner",
+                "name": "EcoRed Demo",
+                "nit": "900000001",
+                "city": "Bogotá",
+                "sector": "Manufactura",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+
+            material_listings_collection.insert_one({
+                "company_id": result.inserted_id,
+                "material_type": "Cartón",
+                "quantity": 80,
+                "unit": "kg",
+                "location": "Bogotá",
+                "status": "available",
+                "published_by": "demo-owner",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+
+        self.stdout.write(self.style.SUCCESS("Datos demo creados en MongoDB"))
+```
+
+---
+
+## 16. Validar el backend desde la terminal integrada de VS Code
+
+### Revisar configuración
+
+```powershell
+python manage.py check
+```
+
+### Ejecutar proceso administrativo
+
+```powershell
+python manage.py seed_demo
+```
+
+### Ejecutar backend
+
+```powershell
+python manage.py runserver 8000
+```
+
+### Verificar health endpoint
+
+Abrir:
+
+```text
+http://127.0.0.1:8000/api/health/
+```
+
+Respuesta esperada:
+
+```json
+{"status":"ok"}
+```
+
+---
 
 ## Evidencia Twelve-Factor transversal en esta sección
 
 - **Factor I. Codebase**: backend dentro de un solo repositorio.
-- **Factor II. Dependencies**: `requirements.txt`.
-- **Factor III. Config**: `.env`.
-- **Factor IV. Backing services**: MongoDB Atlas y Firebase integrados como servicios externos.
-- **Factor VI. Processes**: backend sin estado local persistente.
-- **Factor XI. Logs**: salida por consola.
-- **Factor XII. Admin processes**: `seed_demo`.
+- **Factor II. Dependencies**: dependencias declaradas en `requirements.txt`.
+- **Factor III. Config**: `.env` y `.env.example`.
+- **Factor IV. Backing services**: integración con MongoDB Atlas y Firebase.
+- **Factor VI. Processes**: proceso web y proceso administrativo separados.
+- **Factor XI. Logs**: salida por consola en la terminal de VS Code.
+- **Factor XII. Admin processes**: `seed_demo` como proceso aislado.
