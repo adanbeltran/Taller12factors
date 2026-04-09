@@ -64,6 +64,8 @@ Esto no implica proyectos distintos. Sigue existiendo una sola codebase, pero co
 
 ### Estructura esperada en este punto
 
+
+
 ```text
 ecored-circular/
 ├── backend/
@@ -148,19 +150,9 @@ mkdir companies\management\commands
 
 ### Estructura esperada en este punto
 
-```text
-ecored-circular/
-├── backend/
-│   ├── venv/
-│   ├── config/
-│   ├── companies/
-│   │   └── management/
-│   │       └── commands/
-│   ├── manage.py
-│   └── requirements.txt
-├── frontend/
-├── docs/
-```
+
+<img width="384" height="482" alt="image" src="https://github.com/user-attachments/assets/cea7c65d-d8b5-4a81-af0e-7745384a72a0" />
+
 
 ### Aplicación de Twelve-Factor
 
