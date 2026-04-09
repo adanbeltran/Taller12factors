@@ -45,6 +45,36 @@ mkdir companies\management\commands
 
 Con esto queda creada la estructura base de carpetas y subcarpetas que se utilizará en el taller.
 
+### Aclaración sobre versión, ambiente y flujo de trabajo con Git
+
+Los comandos anteriores crean la estructura base del proyecto e inicializan el repositorio Git, pero no crean por sí mismos una versión liberada ni un ambiente de despliegue.
+
+Es importante diferenciar:
+
+- **proyecto**: `ecored-circular`, que corresponde a la única codebase del taller;
+- **versión**: estado liberado del código, por ejemplo `v1.0`, `v1.0.1` o `v2.0`;
+- **ambiente**: contexto donde una versión se ejecuta, por ejemplo `dev`, `test` o `prod`.
+
+En este taller, los comandos Git iniciales solo preparan el control de versiones del proyecto y crean la rama de trabajo `develop`. La versión `v1.0` se definirá más adelante como release documentada del taller, y los ambientes posibles de despliegue no se representan como carpetas distintas dentro del repositorio.
+
+En una situación real puede ocurrir lo siguiente al mismo tiempo:
+
+- en **producción** se está ejecutando una versión estable, por ejemplo `v1.0`,
+- en **pruebas** se está validando otra versión identificada, por ejemplo `v1.1`,
+- en **desarrollo** el equipo continúa construyendo nuevas funcionalidades que formarán parte de una versión posterior, por ejemplo `v2.0`.
+
+Esto no significa que existan proyectos distintos. Sigue existiendo una sola codebase, pero con diferentes **versiones liberadas** ejecutándose en distintos **ambientes** según su nivel de madurez.
+
+La regla clave es esta:
+
+- **producción** ejecuta la última versión aprobada,
+- **pruebas** valida una versión congelada e identificada,
+- **desarrollo** continúa con cambios nuevos que todavía no afectan la versión que se está probando ni la que ya está en producción.
+
+De este modo, los nuevos desarrollos no alteran automáticamente la versión que se encuentra en validación ni la que ya está operando en producción.
+
+
+
 ### Estructura esperada en este punto
 
 ```text
