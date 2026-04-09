@@ -4,32 +4,21 @@
 
 ## Propósito de esta sección
 
-En esta sección se construirá el backend del proyecto usando **Visual Studio Code** como entorno principal de trabajo.
-
-La lógica de trabajo será la siguiente:
-
-1. crear desde la **terminal integrada de VS Code** toda la estructura base de carpetas y subcarpetas,
-2. crear y editar los archivos desde el **explorador de VS Code**,
-3. ejecutar y validar el backend desde la misma terminal integrada.
+En esta sección se construirá el backend del proyecto usando **Visual Studio Code** como entorno principal de trabajo. Primero se ejecutarán en la **terminal integrada de VS Code** los comandos necesarios para preparar la base del backend. Después, desde el **editor de VS Code**, se crearán los archivos de configuración y código. Finalmente, se volverá a la terminal para validar la ejecución del servicio.
 
 En coherencia con el alcance del taller, la app principal del backend será **`companies`**, ya que el foco funcional está en el **módulo de empresas** del caso de estudio.
 
 ---
 
-## 1. Abrir VS Code y usar la terminal integrada
+## 1. Crear la estructura del proyecto e inicializar Git
 
-1. Abrir **Visual Studio Code**.
-2. Abrir una carpeta de trabajo vacía o la ubicación donde se creará el proyecto.
-3. Abrir la terminal integrada desde:
-   - menú **Terminal > New Terminal**
+En este paso se crea la estructura inicial del proyecto y se inicializa el repositorio Git.
 
-A partir de este punto, todos los comandos del backend se ejecutarán desde esa terminal integrada.
+Abrir **Visual Studio Code**, abrir una carpeta de trabajo vacía y luego abrir la terminal integrada desde:
 
----
+- **Terminal > New Terminal**
 
-## 2. Crear toda la estructura inicial del proyecto desde la terminal de VS Code
-
-Ejecutar en la terminal integrada de VS Code:
+Ejecutar:
 
 ```powershell
 mkdir ecored-circular
@@ -37,17 +26,27 @@ cd ecored-circular
 mkdir backend, frontend, docs
 git init
 git checkout -b develop
-cd backend
-mkdir companies
-mkdir companies\management
-mkdir companies\management\commands
 ```
 
-Con esto queda creada la estructura base de carpetas y subcarpetas que se utilizará en el taller.
+### Qué realiza este paso
 
-### Aclaración sobre versión, ambiente y flujo de trabajo con Git
+- crea la carpeta raíz del proyecto,
+- crea las carpetas principales `backend`, `frontend` y `docs`,
+- inicializa Git,
+- crea la rama de trabajo `develop`.
 
-Los comandos anteriores crean la estructura base del proyecto e inicializan el repositorio Git, pero no crean por sí mismos una versión liberada ni un ambiente de despliegue.
+### Explicación de los comandos
+
+- `mkdir ecored-circular` crea la carpeta principal del proyecto.
+- `cd ecored-circular` entra a esa carpeta para trabajar dentro de ella.
+- `mkdir backend, frontend, docs` crea las tres carpetas base:
+  - `backend` para el servicio Django,
+  - `frontend` para la interfaz React,
+  - `docs` para la documentación del taller.
+- `git init` inicializa el repositorio.
+- `git checkout -b develop` crea y activa la rama de trabajo `develop`.
+
+### Aclaración sobre proyecto, versión y ambiente
 
 Es importante diferenciar:
 
@@ -55,134 +54,134 @@ Es importante diferenciar:
 - **versión**: estado liberado del código, por ejemplo `v1.0`, `v1.0.1` o `v2.0`;
 - **ambiente**: contexto donde una versión se ejecuta, por ejemplo `dev`, `test` o `prod`.
 
-En este taller, los comandos Git iniciales solo preparan el control de versiones del proyecto y crean la rama de trabajo `develop`. La versión `v1.0` se definirá más adelante como release documentada del taller, y los ambientes posibles de despliegue no se representan como carpetas distintas dentro del repositorio.
+En una situación real puede ocurrir simultáneamente que:
 
-En una situación real puede ocurrir lo siguiente al mismo tiempo:
+- en **producción** se esté ejecutando una versión estable, por ejemplo `v1.0`,
+- en **pruebas** se esté validando otra versión identificada, por ejemplo `v1.1`,
+- en **desarrollo** el equipo continúe construyendo nuevas funcionalidades para una versión posterior, por ejemplo `v2.0`.
 
-- en **producción** se está ejecutando una versión estable, por ejemplo `v1.0`,
-- en **pruebas** se está validando otra versión identificada, por ejemplo `v1.1`,
-- en **desarrollo** el equipo continúa construyendo nuevas funcionalidades que formarán parte de una versión posterior, por ejemplo `v2.0`.
-
-Esto no significa que existan proyectos distintos. Sigue existiendo una sola codebase, pero con diferentes **versiones liberadas** ejecutándose en distintos **ambientes** según su nivel de madurez.
-
-La regla clave es esta:
-
-- **producción** ejecuta la última versión aprobada,
-- **pruebas** valida una versión congelada e identificada,
-- **desarrollo** continúa con cambios nuevos que todavía no afectan la versión que se está probando ni la que ya está en producción.
-
-De este modo, los nuevos desarrollos no alteran automáticamente la versión que se encuentra en validación ni la que ya está operando en producción.
-
-
+Esto no implica proyectos distintos. Sigue existiendo una sola codebase, pero con diferentes versiones liberadas ejecutándose en distintos ambientes según su nivel de madurez.
 
 ### Estructura esperada en este punto
 
 ```text
 ecored-circular/
 ├── backend/
-│   └── companies/
-│       └── management/
-│           └── commands/
 ├── frontend/
 ├── docs/
 ```
 
-### Evidencia Twelve-Factor transversal
+### Aplicación de Twelve-Factor
 
-- **Factor I. Codebase**: un solo repositorio y una sola estructura base del proyecto.
-- **Factor XII. Admin processes**: desde el inicio queda prevista la carpeta para comandos administrativos.
-
----
-
-## 3. Abrir la carpeta del proyecto en VS Code
-
-Si aún no está abierta como carpeta principal, abrir en VS Code la carpeta:
-
-```text
-ecored-circular
-```
-
-A partir de este momento, los archivos se crearán y editarán desde el panel **Explorer** de VS Code.
+- **Factor I. Codebase**: un solo repositorio y una sola base de código.
 
 ---
 
-## 4. Crear entorno virtual desde la terminal integrada de VS Code
+## 2. Crear ambiente virtual e instalar librerías
 
-Ubicados en `backend/`, ejecutar:
+En este paso se prepara el entorno de ejecución del backend y se instalan las dependencias necesarias.
+
+Ubicados en la terminal integrada, ejecutar:
 
 ```powershell
+cd backend
 python -m venv venv
-```
-
-### Activar entorno virtual
-
-```powershell
 venv\Scripts\activate
-```
-
----
-
-## 5. Instalar dependencias desde la terminal integrada de VS Code
-
-Con el entorno virtual activado, ejecutar:
-
-```powershell
 pip install django djangorestframework django-cors-headers python-dotenv firebase-admin pymongo gunicorn
 pip freeze > requirements.txt
 ```
 
-### Evidencia Twelve-Factor transversal
+### Qué realiza este paso
+
+- entra a la carpeta del backend,
+- crea el entorno virtual,
+- activa ese entorno,
+- instala dependencias,
+- genera `requirements.txt`.
+
+### Explicación de los comandos
+
+- `cd backend` mueve la terminal a la carpeta donde se construirá el servicio Django.
+- `python -m venv venv` crea un entorno virtual aislado llamado `venv`.
+- `venv\Scripts\activate` activa el entorno virtual en Windows.
+- `pip install ...` instala los paquetes del backend:
+  - `django`: framework principal,
+  - `djangorestframework`: construcción de la API REST,
+  - `django-cors-headers`: manejo de CORS,
+  - `python-dotenv`: lectura de variables desde `.env`,
+  - `firebase-admin`: validación de tokens de Firebase,
+  - `pymongo`: conexión con MongoDB,
+  - `gunicorn`: referencia de servidor WSGI para escenarios de despliegue.
+- `pip freeze > requirements.txt` guarda las dependencias instaladas con sus versiones exactas.
+
+### Aplicación de Twelve-Factor
 
 - **Factor II. Dependencies**: dependencias declaradas explícitamente en `requirements.txt`.
 
 ---
 
-## 6. Crear proyecto Django y la app `companies` desde la terminal integrada de VS Code
+## 3. Crear proyecto Django y app `companies`
 
-Todavía ubicados en `backend/`, ejecutar:
+En este paso se genera la base del backend con Django y se crea la app `companies`, que representa el módulo principal de este taller.
+
+Todavía en la terminal integrada, ejecutar:
 
 ```powershell
 django-admin startproject config .
 python manage.py startapp companies
+mkdir companies\management
+mkdir companies\management\commands
 ```
 
-> Nota: si Django recrea la carpeta `companies`, verificar que dentro de ella exista la ruta `management\commands\`. Si no aparece, crearla nuevamente desde VS Code o desde la terminal.
+### Qué realiza este paso
+
+- crea el proyecto Django `config`,
+- crea la app `companies`,
+- prepara la estructura para comandos administrativos.
+
+### Explicación de los comandos
+
+- `django-admin startproject config .` crea el proyecto Django en la carpeta actual.
+- `python manage.py startapp companies` crea la app que encapsulará la lógica del módulo de empresas.
+- `mkdir companies\management` crea la carpeta base para comandos personalizados.
+- `mkdir companies\management\commands` crea la ruta donde vivirá `seed_demo`.
+
+### Estructura esperada en este punto
+
+```text
+ecored-circular/
+├── backend/
+│   ├── venv/
+│   ├── config/
+│   ├── companies/
+│   │   └── management/
+│   │       └── commands/
+│   ├── manage.py
+│   └── requirements.txt
+├── frontend/
+├── docs/
+```
+
+### Aplicación de Twelve-Factor
+
+- **Factor XII. Admin processes**: queda preparada la ruta para procesos administrativos.
 
 ---
 
-## 7. Crear los archivos desde el explorador de VS Code
+## 4. Crear archivos de configuración
 
-A partir de este punto, los archivos deben crearse desde el panel lateral de **VS Code**, usando **New File** sobre la carpeta correspondiente.
+En este paso se crean los archivos base de configuración del backend.
 
-### Archivos que deben crearse o completarse
+A partir de este punto, abrir en VS Code la carpeta `ecored-circular` y crear desde el panel **Explorer** los siguientes archivos:
 
-#### En la raíz del proyecto
 - `.gitignore`
+- `backend/.env.example`
+- `backend/.env`
+- `backend/firebase-service-account.json`
+- `backend/config/settings.py`
+- `backend/config/urls.py`
 
-#### En `backend/`
-- `.env.example`
-- `.env`
-- `requirements.txt` si no quedó generado
-- `firebase-service-account.json`
-
-#### En `backend\config\`
-- `settings.py`
-- `urls.py`
-
-#### En `backend\companies\`
-- `mongo.py`
-- `firebase_auth.py`
-- `views.py`
-- `urls.py`
-
-#### En `backend\companies\management\commands\`
-- `seed_demo.py`
-
----
-
-## 8. Crear `.gitignore` desde VS Code
-
-Crear el archivo `.gitignore` en la raíz del proyecto con este contenido:
+### Archivo `.gitignore`
 
 ```gitignore
 backend/venv/
@@ -195,14 +194,6 @@ node_modules/
 dist/
 build/
 ```
-
-### Evidencia Twelve-Factor transversal
-
-- **Factor III. Config**: la configuración sensible no entra al repositorio.
-
----
-
-## 9. Crear `backend/.env.example` y `backend/.env` desde VS Code
 
 ### Archivo `backend/.env.example`
 
@@ -223,16 +214,7 @@ FIREBASE_CREDENTIALS_PATH=./firebase-service-account.json
 
 Luego crear `backend/.env` copiando la misma estructura y completando los valores reales.
 
-### Evidencia Twelve-Factor transversal
-
-- **Factor III. Config**: configuración separada del código.
-- **Factor IV. Backing services**: conexión a MongoDB Atlas y Firebase mediante variables de entorno.
-
----
-
-## 10. Editar `backend/config/settings.py` desde VS Code
-
-Abrir `backend/config/settings.py` y reemplazar su contenido esencial por:
+### Archivo `backend/config/settings.py`
 
 ```python
 from pathlib import Path
@@ -298,34 +280,32 @@ LOGGING = {
 }
 ```
 
----
+### Qué realiza este paso
 
-## 11. Crear `backend/companies/mongo.py` desde VS Code
+- excluye del repositorio archivos sensibles y temporales,
+- define una plantilla de variables de entorno,
+- crea la configuración principal del proyecto Django,
+- enlaza la app `companies` con el proyecto.
 
-```python
-import os
-from pymongo import MongoClient
-from dotenv import load_dotenv
-from pathlib import Path
+### Explicación del código mostrado
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
+- `.gitignore` evita versionar archivos sensibles o generados localmente,
+- `.env.example` documenta las variables requeridas,
+- `.env` contiene los valores reales del equipo,
+- `settings.py` centraliza apps instaladas, middlewares, CORS, REST framework y logging.
 
-MONGODB_URI = os.getenv("MONGODB_URI")
-MONGODB_DB_NAME = os.getenv("MONGODB_DB_NAME", "ecored_circular_db")
+### Aplicación de Twelve-Factor
 
-client = MongoClient(MONGODB_URI)
-db = client[MONGODB_DB_NAME]
-
-companies_collection = db["companies"]
-material_listings_collection = db["material_listings"]
-```
+- **Factor III. Config**: configuración separada del código.
+- **Factor XI. Logs**: logs enviados a consola.
 
 ---
 
-## 12. Crear `backend/companies/firebase_auth.py` desde VS Code
+## 5. Crear la funcionalidad de autenticación
 
-Guardar en `backend/` el archivo `firebase-service-account.json` y luego crear `backend/companies/firebase_auth.py`:
+En este paso se implementa la validación de tokens de Firebase en el backend.
+
+Crear el archivo `backend/companies/firebase_auth.py`:
 
 ```python
 import os
@@ -365,9 +345,76 @@ class FirebaseAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed("Token inválido")
 ```
 
+### Qué realiza este paso
+
+- carga la credencial de Firebase,
+- inicializa el SDK de administración,
+- lee el token enviado en `Authorization`,
+- valida si ese token es correcto,
+- deja la información del usuario disponible en el request.
+
+### Explicación del código mostrado
+
+- `credentials.Certificate(...)` carga la credencial del backend,
+- `firebase_admin.initialize_app(...)` inicializa Firebase,
+- `BaseAuthentication` permite integrar autenticación personalizada en DRF,
+- `auth.verify_id_token(...)` valida el token recibido.
+
+### Aplicación de Twelve-Factor
+
+- **Factor IV. Backing services**: Firebase se integra como servicio externo.
+
 ---
 
-## 13. Crear `backend/companies/views.py` desde VS Code
+## 6. Crear la funcionalidad de acceso a datos
+
+En este paso se implementa la conexión a MongoDB Atlas y se exponen las colecciones que utilizará el backend.
+
+Crear el archivo `backend/companies/mongo.py`:
+
+```python
+import os
+from pymongo import MongoClient
+from dotenv import load_dotenv
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
+
+MONGODB_URI = os.getenv("MONGODB_URI")
+MONGODB_DB_NAME = os.getenv("MONGODB_DB_NAME", "ecored_circular_db")
+
+client = MongoClient(MONGODB_URI)
+db = client[MONGODB_DB_NAME]
+
+companies_collection = db["companies"]
+material_listings_collection = db["material_listings"]
+```
+
+### Qué realiza este paso
+
+- carga la configuración de MongoDB,
+- crea el cliente de conexión,
+- selecciona la base,
+- deja disponibles dos colecciones para el resto del código.
+
+### Explicación del código mostrado
+
+- `MongoClient(MONGODB_URI)` crea el cliente de conexión,
+- `db = client[MONGODB_DB_NAME]` selecciona la base,
+- `db["companies"]` y `db["material_listings"]` referencian las colecciones que se usarán en el flujo del taller.
+
+### Aplicación de Twelve-Factor
+
+- **Factor IV. Backing services**: MongoDB Atlas se consume como servicio externo configurable.
+
+---
+
+## 7. Crear vistas y rutas
+
+En este paso se construye la capa HTTP del backend. El objetivo es exponer endpoints mínimos para empresas, publicaciones y salud del servicio.
+
+Crear el archivo `backend/companies/views.py`:
 
 ```python
 from datetime import datetime, timezone
@@ -385,27 +432,40 @@ class CompanyViewSet(viewsets.ViewSet):
         companies = list(
             companies_collection.find(
                 {"owner_uid": uid},
-                {"owner_uid": 1, "name": 1, "nit": 1, "city": 1, "sector": 1, "created_at": 1}
+                {
+                    "owner_uid": 1,
+                    "name": 1,
+                    "nit": 1,
+                    "city": 1,
+                    "sector": 1,
+                    "created_at": 1,
+                },
             )
         )
+
         for company in companies:
             company["id"] = str(company["_id"])
             del company["_id"]
+
         return Response(companies)
 
     def create(self, request):
         uid = request.firebase_user.get("uid")
         data = request.data
+
         document = {
             "owner_uid": uid,
             "name": data.get("name"),
             "nit": data.get("nit"),
             "city": data.get("city"),
             "sector": data.get("sector"),
-            "created_at": datetime.now(timezone.utc).isoformat()
+            "created_at": datetime.now(timezone.utc).isoformat(),
         }
+
         result = companies_collection.insert_one(document)
+
         return Response({"id": str(result.inserted_id)}, status=status.HTTP_201_CREATED)
+
 
 class MaterialListingViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -414,15 +474,19 @@ class MaterialListingViewSet(viewsets.ViewSet):
         uid = request.firebase_user.get("uid")
         companies = list(companies_collection.find({"owner_uid": uid}, {"_id": 1}))
         company_ids = [company["_id"] for company in companies]
+
         items = list(material_listings_collection.find({"company_id": {"$in": company_ids}}))
+
         for item in items:
             item["id"] = str(item["_id"])
             item["company_id"] = str(item["company_id"])
             del item["_id"]
+
         return Response(items)
 
     def create(self, request):
         data = request.data
+
         document = {
             "company_id": ObjectId(data.get("company_id")),
             "material_type": data.get("material_type"),
@@ -431,10 +495,13 @@ class MaterialListingViewSet(viewsets.ViewSet):
             "location": data.get("location"),
             "status": data.get("status", "available"),
             "published_by": request.firebase_user.get("uid"),
-            "created_at": datetime.now(timezone.utc).isoformat()
+            "created_at": datetime.now(timezone.utc).isoformat(),
         }
+
         result = material_listings_collection.insert_one(document)
+
         return Response({"id": str(result.inserted_id)}, status=status.HTTP_201_CREATED)
+
 
 @api_view(["GET"])
 @permission_classes([permissions.AllowAny])
@@ -442,11 +509,7 @@ def health(request):
     return Response({"status": "ok"})
 ```
 
----
-
-## 14. Crear `backend/companies/urls.py` y ajustar `backend/config/urls.py` desde VS Code
-
-### `backend/companies/urls.py`
+Crear el archivo `backend/companies/urls.py`:
 
 ```python
 from rest_framework.routers import DefaultRouter
@@ -463,7 +526,7 @@ urlpatterns = [
 ]
 ```
 
-### `backend/config/urls.py`
+Ajustar `backend/config/urls.py`:
 
 ```python
 from django.contrib import admin
@@ -475,9 +538,32 @@ urlpatterns = [
 ]
 ```
 
+### Qué realiza este paso
+
+- crea los endpoints de la API,
+- conecta autenticación, acceso a datos y lógica de respuesta,
+- expone la API del módulo de empresas.
+
+### Explicación del código mostrado
+
+- `CompanyViewSet` gestiona el registro y consulta de empresas,
+- `MaterialListingViewSet` gestiona publicaciones asociadas a empresa,
+- `health` permite verificar si el backend responde,
+- `DefaultRouter` genera automáticamente las rutas REST de los viewsets.
+
+### Aplicación de Twelve-Factor
+
+- **Factor VI. Processes**: el backend expone un proceso web desacoplado.
+- **Factor VII. Port binding**: el backend se publicará por puerto.
+- **Factor XI. Logs**: la ejecución deja trazas visibles en consola.
+
 ---
 
-## 15. Crear `backend/companies/management/commands/seed_demo.py` desde VS Code
+## 8. Crear datos iniciales y validar ejecución
+
+En este paso se construye un proceso administrativo independiente y se valida que el backend funcione correctamente.
+
+Crear el archivo `backend/companies/management/commands/seed_demo.py`:
 
 ```python
 from django.core.management.base import BaseCommand
@@ -489,6 +575,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         existing = companies_collection.find_one({"nit": "900000001"})
+
         if not existing:
             result = companies_collection.insert_one({
                 "owner_uid": "demo-owner",
@@ -496,7 +583,7 @@ class Command(BaseCommand):
                 "nit": "900000001",
                 "city": "Bogotá",
                 "sector": "Manufactura",
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat(),
             })
 
             material_listings_collection.insert_one({
@@ -507,15 +594,13 @@ class Command(BaseCommand):
                 "location": "Bogotá",
                 "status": "available",
                 "published_by": "demo-owner",
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat(),
             })
 
         self.stdout.write(self.style.SUCCESS("Datos demo creados en MongoDB"))
 ```
 
----
-
-## 16. Validar el backend desde la terminal integrada de VS Code
+Luego volver a la terminal integrada de VS Code y ejecutar:
 
 ### Revisar configuración
 
@@ -549,14 +634,24 @@ Respuesta esperada:
 {"status":"ok"}
 ```
 
----
+### Qué realiza este paso
 
-## Evidencia Twelve-Factor transversal en esta sección
+- crea un comando administrativo con datos de ejemplo,
+- verifica que la configuración del proyecto sea válida,
+- inicia el backend,
+- comprueba que el servicio responde correctamente.
 
-- **Factor I. Codebase**: backend dentro de un solo repositorio.
-- **Factor II. Dependencies**: dependencias declaradas en `requirements.txt`.
-- **Factor III. Config**: `.env` y `.env.example`.
-- **Factor IV. Backing services**: integración con MongoDB Atlas y Firebase.
-- **Factor VI. Processes**: proceso web y proceso administrativo separados.
-- **Factor XI. Logs**: salida por consola en la terminal de VS Code.
-- **Factor XII. Admin processes**: `seed_demo` como proceso aislado.
+### Explicación del código mostrado
+
+- `BaseCommand` permite crear comandos propios de Django,
+- `handle()` es el punto de entrada del comando,
+- primero se verifica si ya existe el dato demo,
+- luego se insertan documentos de ejemplo,
+- finalmente se imprime un mensaje de éxito.
+
+### Aplicación de Twelve-Factor
+
+- **Factor XII. Admin processes**: `seed_demo` como proceso administrativo aislado.
+- **Factor VI. Processes**: proceso web y proceso administrativo diferenciados.
+- **Factor IX. Disposability**: el backend puede reiniciarse y volver a responder.
+- **Factor XI. Logs**: la ejecución queda visible en consola.
