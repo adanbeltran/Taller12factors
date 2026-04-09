@@ -2,6 +2,10 @@
 
 Aplicación cloud-native mínima con **React**, **Django REST Framework**, **Firebase Authentication** y **MongoDB Atlas**, orientada a evidenciar rigurosamente los principios de **Twelve-Factor App**.
 
+## Video de apoyo
+
+[▶ Ver video en SharePoint](https://uniempresarial-my.sharepoint.com/:v:/g/personal/abeltran_uniempresarial_edu_co/IQBgLxQxE0NVSJV0fggITaXLAYKDKrG24zrSsFEI8c1u8tw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Ay98Ym)
+
 ## Navegación del taller
 
 ### A. Caso de estudio
