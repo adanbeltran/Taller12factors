@@ -87,9 +87,9 @@ Dentro de `docs/` pueden mantenerse además:
 - `environments.md`
 - `checklist-12factor.md`
 
-## 9. Sustentación en sala
+## 9. Sustentación
 
-Al final del taller, los estudiantes deben **desarrollar o sustentar en sala** lo realizado.
+La sustentacion sera a travez de un corto video (max 10 minutos) mostrando la funcionalidad y funcionamiento del codigo, es importante que se muestren como resolvieron los incovenientes presentados.
 
 La sustentación debe mostrar, con base en el repositorio y en la ejecución del sistema, cómo se evidencia cada uno de los 12 factores en la solución construida.
 
