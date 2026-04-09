@@ -6,6 +6,8 @@
 
 En esta sección se construirá el backend del proyecto usando **Visual Studio Code** como entorno principal de trabajo. Primero se ejecutarán en la **terminal integrada de VS Code** los comandos necesarios para preparar la base del backend. Después, desde el **editor de VS Code**, se crearán los archivos de configuración y código. Finalmente, se volverá a la terminal para validar la ejecución del servicio.
 
+**Se asume que ya el estudiante ha tiene la cadena de conexion a MongoDB, y las credenciales en firebase**
+
 En coherencia con el alcance del taller, la app principal del backend será **`companies`**, ya que el foco funcional está en el **módulo de empresas** del caso de estudio.
 
 ---
@@ -170,8 +172,7 @@ A partir de este punto, abrir en VS Code la carpeta `ecored-circular` y crear de
 - `backend/.env.example`
 - `backend/.env`
 - `backend/firebase-service-account.json`
-- `backend/config/settings.py`
-- `backend/config/urls.py`
+
 
 ### Archivo `.gitignore`
 
