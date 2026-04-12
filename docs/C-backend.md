@@ -218,10 +218,6 @@ Para obtenerlo, se debe ingresar a la configuración del proyecto en Firebase y 
 
 Una vez descargado, ese archivo debe copiarse o moverse a la carpeta `backend` del proyecto y quedar como `backend/firebase-service-account.json`
 
-```text
-backend/firebase-service-account.json
-
-
 
 ### Archivos generados por Django que se deben editar
 
