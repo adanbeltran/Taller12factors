@@ -237,7 +237,10 @@ CORS_ALLOWED_ORIGINS=http://localhost:5173
 FIREBASE_CREDENTIALS_PATH=./firebase-service-account.json
 ```
 
+
 Luego crear `backend/.env` copiando la misma estructura y completando los valores reales.
+
+> ⚠️ La variable `DJANGO_SECRET_KEY` puede obtenerse del archivo `backend/config/settings.py` que Django genera automáticamente al ejecutar `django-admin startproject config .`. A partir de ese archivo se copia el valor inicial de `SECRET_KEY` y se lleva al archivo `.env`.
 
 ### Archivo `backend/config/settings.py`
 
