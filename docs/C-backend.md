@@ -289,6 +289,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+n
+# En este taller, TEMPLATES se mantiene en settings.py porque Django lo necesita
+# para componentes internos como el panel de administración. Esta configuración
+# se usa cuando el backend debe renderizar HTML desde el servidor, aunque el foco
+# principal del proyecto sea exponer una API REST.
+
+
 
 TEMPLATES = [
     {
