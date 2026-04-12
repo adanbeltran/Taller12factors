@@ -735,6 +735,11 @@ python manage.py seed_demo
 
 
 
+<img width="1189" height="676" alt="image" src="https://github.com/user-attachments/assets/e80e44d7-3317-453a-9983-534105a434b5" />
+
+
+
+
 
 ### Ejecutar backend
 
