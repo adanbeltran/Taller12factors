@@ -11,6 +11,9 @@ npm install
 npm install axios react-router-dom firebase
 ```
 
+<img width="1173" height="569" alt="image" src="https://github.com/user-attachments/assets/f6c0a7ef-e906-4283-b1d5-738db2cfa911" />
+
+
 ## 2. Crear `.env.example`
 
 Archivo `frontend/.env.example`:
