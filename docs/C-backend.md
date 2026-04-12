@@ -726,6 +726,14 @@ python manage.py check
 python manage.py seed_demo
 ```
 
+<img width="1052" height="182" alt="image" src="https://github.com/user-attachments/assets/c90358c3-f15d-431f-b441-f0efb4ef16ce" />
+
+<img width="1795" height="580" alt="image" src="https://github.com/user-attachments/assets/37e5d5fb-9b56-4aed-a5b3-211ee5d640a5" />
+
+<img width="1412" height="596" alt="image" src="https://github.com/user-attachments/assets/02ffc448-51dd-490f-84a3-6c4f74cb41a0" />
+
+
+
 ### Ejecutar backend
 
 ```powershell
