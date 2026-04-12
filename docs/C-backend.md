@@ -747,6 +747,10 @@ python manage.py seed_demo
 python manage.py runserver 8000
 ```
 
+<img width="1151" height="342" alt="image" src="https://github.com/user-attachments/assets/df2e7f30-ef2d-41c2-afb2-c6195d234d51" />
+
+
+
 ### Verificar health endpoint
 
 Abrir:
