@@ -211,11 +211,12 @@ Para obtenerlo, se debe ingresar a la configuración del proyecto en Firebase y 
 
 <img width="610" height="603" alt="image" src="https://github.com/user-attachments/assets/9c9f2a1b-cc5d-4918-9caa-be29d0d78a49" />
 
-<img width="1275" height="779" alt="image" src="https://github.com/user-attachments/assets/6e3a67a3-73de-49b5-9ea9-a4f0c9e32629" />
+<img width="1278" height="772" alt="image" src="https://github.com/user-attachments/assets/a2b00490-52e6-48e0-a693-dc2e85c49d58" />
 
 
 
-Una vez descargado, ese archivo debe copiarse o moverse a la carpeta `backend` del proyecto y quedar con el nombre:
+
+Una vez descargado, ese archivo debe copiarse o moverse a la carpeta `backend` del proyecto y quedar como `backend/firebase-service-account.json`
 
 ```text
 backend/firebase-service-account.json
