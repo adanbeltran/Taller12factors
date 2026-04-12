@@ -666,7 +666,7 @@ router = DefaultRouter()
 router.register(r"companies", CompanyViewSet, basename="companies")
 
 # Registra las rutas de publicaciones de materiales.
-router.register(r"material-listings", MaterialListingViewSet, basename="material-listings")
+router.register(r"materials", MaterialListingViewSet, basename="materials")
 
 # Expone las rutas públicas de la app.
 urlpatterns = [
