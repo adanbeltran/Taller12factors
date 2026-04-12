@@ -201,6 +201,27 @@ A partir de este punto, abrir en VS Code la carpeta `ecored-circular` y trabajar
 - `backend/.env`
 - `backend/firebase-service-account.json`
 
+
+### Cómo obtener y ubicar `backend/firebase-service-account.json`
+
+El archivo `backend/firebase-service-account.json` corresponde a la credencial de servicio que el backend necesita para autenticarse de forma segura con Firebase desde el lado del servidor. No es un archivo que se escriba manualmente: debe descargarse desde la consola del proyecto de **Firebase** que se esté utilizando en la práctica.
+
+Para obtenerlo, se debe ingresar a la configuración del proyecto en Firebase y abrir la sección **Service accounts**. Allí se genera una nueva **clave privada** del SDK de administración. Al completar este proceso, Firebase descarga un archivo en formato `.json` que contiene la identidad y las credenciales del proyecto para uso administrativo desde el backend.
+
+
+<img width="610" height="603" alt="image" src="https://github.com/user-attachments/assets/9c9f2a1b-cc5d-4918-9caa-be29d0d78a49" />
+
+<img width="1275" height="779" alt="image" src="https://github.com/user-attachments/assets/6e3a67a3-73de-49b5-9ea9-a4f0c9e32629" />
+
+
+
+Una vez descargado, ese archivo debe copiarse o moverse a la carpeta `backend` del proyecto y quedar con el nombre:
+
+```text
+backend/firebase-service-account.json
+
+
+
 ### Archivos generados por Django que se deben editar
 
 - `backend/config/settings.py`
