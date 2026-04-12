@@ -759,6 +759,10 @@ Abrir:
 http://127.0.0.1:8000/api/health/
 ```
 
+
+<img width="1728" height="522" alt="image" src="https://github.com/user-attachments/assets/a06afdb5-9e15-42ea-b109-27af52694de6" />
+
+
 Respuesta esperada:
 
 ```json
