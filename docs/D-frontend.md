@@ -186,7 +186,7 @@ export default function MaterialsPage() {
   };
 
   const loadItems = async () => {
-    const res = await api.get("/material-listings/");
+    const res = await api.get("/materials/");
     setItems(res.data);
   };
 
@@ -196,7 +196,7 @@ export default function MaterialsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.post("/material-listings/", form);
+    await api.post("/materials/", form);
     loadItems();
   };
 
@@ -263,6 +263,20 @@ function App() {
 
 export default App;
 ```
+
+## Pruebas
+
+
+<img width="1463" height="362" alt="image" src="https://github.com/user-attachments/assets/1a32a8c6-ac3e-44d5-a215-fa37ba7ad797" />
+
+<img width="1257" height="820" alt="image" src="https://github.com/user-attachments/assets/f03c37c5-8f11-4aa6-b5b7-7fc642c96940" />
+
+<img width="1651" height="320" alt="image" src="https://github.com/user-attachments/assets/51a31fd0-f9cc-414d-ba38-35c44c66b1c3" />
+
+<img width="1286" height="820" alt="image" src="https://github.com/user-attachments/assets/41d7faed-35b4-416e-8a39-fc4e3e01aa8e" />
+
+
+
 
 ## Evidencia Twelve-Factor transversal en esta sección
 
