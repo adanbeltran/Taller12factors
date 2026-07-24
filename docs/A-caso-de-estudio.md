@@ -24,8 +24,9 @@ Durante la sesión, los estudiantes deben seguir los pasos, ejecutar la solució
 **EcoRed Circular** es un caso de estudio orientado a la economía circular en Colombia. Su propósito es servir como base para una plataforma digital que articule actores vinculados al aprovechamiento, circulación y valorización de materiales reciclables o reutilizables.
 
 
+<img width="1024" height="1535" alt="a52559e1-47a9-43a9-a403-a3516c64b85d" src="https://github.com/user-attachments/assets/d255322e-a838-43a1-b961-718ed822b449" />
 
-<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/b35847ca-4627-403a-8f2d-ca138d26ce44" />
+
 
 
 El caso parte de una situación realista:
