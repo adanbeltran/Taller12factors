@@ -12,6 +12,7 @@ Aplicación cloud-native mínima con **React**, **Django REST Framework**, **Fir
 [Ir a la sección A](docs/A-caso-de-estudio.md)
 
 
+## Arquitectura Inicial
 <img width="1491" height="1055" alt="c5b7ede6-298a-40c6-b925-4b4188feafa6" src="https://github.com/user-attachments/assets/2debb691-4570-48d5-82df-5b66a9ca6930" />
 
 
@@ -87,3 +88,9 @@ ecored-circular/
 │   └── E-despliegue-local.md
 └── README.md
 ```
+
+## Arquitectura Final
+
+<img width="1448" height="1086" alt="002bdb74-78dd-49f3-9821-da0c87247191" src="https://github.com/user-attachments/assets/0618da1f-9177-4491-9661-fb4657e93719" />
+
+
