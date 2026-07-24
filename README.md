@@ -11,6 +11,10 @@ Aplicación cloud-native mínima con **React**, **Django REST Framework**, **Fir
 ### A. Caso de estudio
 [Ir a la sección A](docs/A-caso-de-estudio.md)
 
+
+<img width="1491" height="1055" alt="c5b7ede6-298a-40c6-b925-4b4188feafa6" src="https://github.com/user-attachments/assets/2debb691-4570-48d5-82df-5b66a9ca6930" />
+
+
 ### B. Configuración de backing services
 [Ir a la sección B](docs/B-backing-services.md)
 
