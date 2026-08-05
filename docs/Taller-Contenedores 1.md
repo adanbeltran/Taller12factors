@@ -1,5 +1,6 @@
 # Requisitos
-<img width="350" height="398" alt="image" src="https://github.com/user-attachments/assets/5a58c0a8-c004-46a0-925c-eab1e206a0d9" />
+<img width="392" height="406" alt="image" src="https://github.com/user-attachments/assets/9bba91f2-b3b3-4c34-af1e-ce4fccd388c8" />
+
 
 
 # Taller Basico EcoRed Circular en un solo contenedor sin modificar el código
