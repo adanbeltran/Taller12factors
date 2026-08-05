@@ -1,4 +1,8 @@
-# Taller previo. EcoRed Circular en un solo contenedor sin modificar el código
+# Requisitos
+<img width="350" height="398" alt="image" src="https://github.com/user-attachments/assets/5a58c0a8-c004-46a0-925c-eab1e206a0d9" />
+
+
+# Taller Basico EcoRed Circular en un solo contenedor sin modificar el código
 
 > **Propósito:** ejecutar el backend Django y el frontend React/Vite dentro de un único contenedor, conservando el funcionamiento actual del proyecto.  
 > **Nivel:** introductorio.  
