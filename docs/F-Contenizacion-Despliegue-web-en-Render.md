@@ -423,6 +423,10 @@ Web Service público
 
 # Fase 1. Conceptos y preparación
 
+
+<img width="1024" height="1536" alt="d550ccf8-746b-46a3-a8c8-5bdcd4eaef0a" src="https://github.com/user-attachments/assets/a11cbeae-2c34-4ca8-a65b-38d284bef823" />
+
+
 ## Paso 1.1. Identificar los componentes técnicos
 
 | Término | Definición aplicada al taller |
