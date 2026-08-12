@@ -427,6 +427,10 @@ Web Service público
 <img width="1024" height="1536" alt="d550ccf8-746b-46a3-a8c8-5bdcd4eaef0a" src="https://github.com/user-attachments/assets/a11cbeae-2c34-4ca8-a65b-38d284bef823" />
 
 
+<img width="1055" height="1491" alt="863b7f6b-ed79-4084-b26e-18fba87d3306" src="https://github.com/user-attachments/assets/e52dd060-4778-4baf-ac2d-b84ec732d42a" />
+
+
+
 ## Paso 1.1. Identificar los componentes técnicos
 
 | Término | Definición aplicada al taller |
