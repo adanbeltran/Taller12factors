@@ -28,6 +28,9 @@ Aplicación cloud-native mínima con **React**, **Django REST Framework**, **Fir
 ### E. Despliegue local
 [Ir a la sección E](docs/E-despliegue-local.md)
 
+### F. Contenización y Despligue web en Render
+[Ir a la sección E](docs/F-Contenizacion-y-Despliegue-en-Render.md)
+
 ---
 
 ## Alcance del taller
