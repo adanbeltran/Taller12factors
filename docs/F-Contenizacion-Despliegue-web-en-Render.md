@@ -7,6 +7,11 @@
 **Arquitectura del ejercicio:** una imagen, un contenedor y un único punto de entrada HTTP  
 **Nivel:** Ingeniería de Software / Cloud Computing  
 
+
+# Prerequisitos para instalar Docker Destktop
+
+<img width="445" height="418" alt="image" src="https://github.com/user-attachments/assets/fa8a4192-b7c8-49d7-87b0-40ade7ca0c59" />
+
 ---
 
 # Tabla de contenido
