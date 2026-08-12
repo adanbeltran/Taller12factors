@@ -741,19 +741,29 @@ Solo Nginx es el punto de entrada externo del contenedor.
 ```dockerfile
 # syntax=docker/dockerfile:1
 
+# ============================================================
+# ETAPA 1 - Construir React
+# ============================================================
+
 FROM node:24-bookworm-slim AS frontend-build
 
 WORKDIR /frontend
 
 COPY frontend/package.json frontend/package-lock.json ./
+
 RUN npm ci
 
 COPY frontend/ ./
 
+# Frontend y backend compartirán el mismo origen.
 ENV VITE_API_URL=/api
 
 RUN npm run build
 
+
+# ============================================================
+# ETAPA 2 - Imagen final
+# ============================================================
 
 FROM python:3.13-slim-bookworm
 
@@ -766,6 +776,7 @@ RUN apt-get update \
 
 WORKDIR /app
 
+# El requirements.txt actual del proyecto está en UTF-16.
 COPY backend/requirements.txt /tmp/requirements-utf16.txt
 
 RUN python -c "from pathlib import Path; origen=Path('/tmp/requirements-utf16.txt'); destino=Path('/tmp/requirements.txt'); destino.write_text(origen.read_text(encoding='utf-16'), encoding='utf-8')"
@@ -781,6 +792,7 @@ COPY --from=frontend-build \
     /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/nginx.conf
+
 COPY start.sh /start.sh
 
 RUN sed -i 's/\r$//' /start.sh \
